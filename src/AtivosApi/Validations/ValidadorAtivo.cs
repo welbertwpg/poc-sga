@@ -7,6 +7,10 @@ namespace AtivosApi.Validations
     {
         public ValidadorAtivo()
         {
+            RuleFor(m => m.Identificador)
+                .NotEmpty()
+                .WithMessage("'Identificador' obrigatório");
+
             RuleFor(a => a.Nome)
                 .NotEmpty()
                 .WithMessage("'Nome' obrigatório");

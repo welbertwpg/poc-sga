@@ -1,18 +1,13 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using System;
+﻿using System;
 
 namespace AtivosApi.Models
 {
     public class Ativo
     {
         public Ativo()
-        {
-            Identificador = ObjectId.GenerateNewId();
-        }
+            => Identificador = Guid.NewGuid();
 
-        [BsonId]
-        public ObjectId Identificador { get; set; }
+        public Guid Identificador { get; set; }
         public string Nome { get; set; }
         public string Patrimonio { get; set; }
         public TipoAtivo Tipo { get; set; }

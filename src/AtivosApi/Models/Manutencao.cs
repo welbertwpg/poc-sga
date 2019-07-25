@@ -1,6 +1,4 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using System;
+﻿using System;
 
 namespace AtivosApi.Models
 {
@@ -8,13 +6,14 @@ namespace AtivosApi.Models
     {
         public Manutencao()
         {
-            Identificador = ObjectId.GenerateNewId();
+            Identificador = Guid.NewGuid();
+            Realizada = false;
         }
 
-        [BsonId]
-        public ObjectId Identificador { get; set; }
+        public Guid Identificador { get; set; }
         public Ativo Ativo { get; set; }
-        public DateTime Data { get; set; }
+        public DateTime DataHora { get; set; }
         public TipoManutencao TipoManutencao { get; set; }
+        public bool Realizada { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using AtivosApi.Models;
-using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 
 namespace AtivosApi.Database.Interfaces
@@ -8,8 +8,8 @@ namespace AtivosApi.Database.Interfaces
     {
         void Inserir(Ativo ativo);
         void Atualizar(Ativo ativo);
-        void Deletar(ObjectId id);
-        Ativo Obter(ObjectId id);
+        void Deletar(Guid id);
+        Ativo Obter(Guid id);
         IEnumerable<Ativo> Obter();
     }
 }

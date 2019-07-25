@@ -2,7 +2,7 @@
 using AtivosApi.Models;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 
 namespace AtivosApi.Controllers
@@ -25,7 +25,7 @@ namespace AtivosApi.Controllers
             => Ok(repositorioAtivos.Obter());
 
         [HttpGet("{id}")]
-        public ActionResult<Ativo> Get(ObjectId id)
+        public ActionResult<Ativo> Get(Guid id)
             => Ok(repositorioAtivos.Obter(id));
 
         [HttpPost]
@@ -33,6 +33,16 @@ namespace AtivosApi.Controllers
         {
             validadorAtivos.ValidateAndThrow(ativo);
             repositorioAtivos.Inserir(ativo);
+        }
+
+        [HttpPost("{id}/manutencao")]
+        public void Post(Guid id, 
+            [FromBody] Manutencao manutencao, 
+            [FromServices]IRepositorioManutencao repositorioManutencao, 
+            [FromServices]IValidator<Manutencao> validadorManutencao)
+        {
+            validadorManutencao.ValidateAndThrow(manutencao);
+            repositorioManutencao.Inserir(manutencao);
         }
 
         [HttpPut("{id}")]
@@ -43,7 +53,7 @@ namespace AtivosApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void Delete(ObjectId id)
+        public void Delete(Guid id)
             => repositorioAtivos.Deletar(id);
     }
 }
