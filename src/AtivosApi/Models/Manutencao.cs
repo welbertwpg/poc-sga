@@ -11,7 +11,6 @@ namespace AtivosApi.Models
         }
 
         public Guid Identificador { get; set; }
-        public Ativo Ativo { get; set; }
         public DateTime DataHora { get; set; }
         public TipoManutencao TipoManutencao { get; set; }
         public bool Realizada { get; set; }

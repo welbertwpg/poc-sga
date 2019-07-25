@@ -38,11 +38,10 @@ namespace AtivosApi.Controllers
         [HttpPost("{id}/manutencao")]
         public void Post(Guid id, 
             [FromBody] Manutencao manutencao, 
-            [FromServices]IRepositorioManutencao repositorioManutencao, 
             [FromServices]IValidator<Manutencao> validadorManutencao)
         {
             validadorManutencao.ValidateAndThrow(manutencao);
-            repositorioManutencao.Inserir(manutencao);
+            repositorioAtivos.InserirManutencao(id, manutencao);
         }
 
         [HttpPut("{id}")]

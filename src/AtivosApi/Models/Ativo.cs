@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AtivosApi.Models
 {
@@ -14,5 +15,7 @@ namespace AtivosApi.Models
         public DateTime DataAquisicao { get; set; }
         public string Observacoes { get; set; }
         public int MediaHorasUsoDiariamente { get; set; }
+
+        public ICollection<Manutencao> Manutencoes { get; set; }
     }
 }

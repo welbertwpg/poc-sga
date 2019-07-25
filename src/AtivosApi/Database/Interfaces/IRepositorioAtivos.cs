@@ -11,5 +11,7 @@ namespace AtivosApi.Database.Interfaces
         void Deletar(Guid id);
         Ativo Obter(Guid id);
         IEnumerable<Ativo> Obter();
+
+        void InserirManutencao(Guid id, Manutencao manutencao);
     }
 }
