@@ -12,12 +12,19 @@ namespace AtivosApi.Controllers
     public class AtivosController : ControllerBase
     {
         private readonly IRepositorioAtivos repositorioAtivos;
+        private readonly IRepositorioManutencoes repositorioManutencoes;
         private readonly IValidator<Ativo> validadorAtivos;
+        private readonly IValidator<Manutencao> validadorManutencao;
 
-        public AtivosController(IRepositorioAtivos repositorioAtivos, IValidator<Ativo> validadorAtivos)
+        public AtivosController(IRepositorioAtivos repositorioAtivos,
+            IRepositorioManutencoes repositorioManutencoes,
+            IValidator<Ativo> validadorAtivos,
+            IValidator<Manutencao> validadorManutencao)
         {
             this.repositorioAtivos = repositorioAtivos;
+            this.repositorioManutencoes = repositorioManutencoes;
             this.validadorAtivos = validadorAtivos;
+            this.validadorManutencao = validadorManutencao;
         }
 
         [HttpGet]
@@ -36,12 +43,10 @@ namespace AtivosApi.Controllers
         }
 
         [HttpPost("{id}/manutencao")]
-        public void Post(Guid id, 
-            [FromBody] Manutencao manutencao, 
-            [FromServices]IValidator<Manutencao> validadorManutencao)
+        public void Post(Guid id, [FromBody] Manutencao manutencao)
         {
             validadorManutencao.ValidateAndThrow(manutencao);
-            repositorioAtivos.InserirManutencao(id, manutencao);
+            repositorioManutencoes.Inserir(id, manutencao);
         }
 
         [HttpPut("{id}")]

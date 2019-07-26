@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace AtivosApi.Database.Repositories
 {
-    public class RepositorioAtivosMongoDB : IRepositorioAtivos
+    public class RepositorioMongoDB : IRepositorioAtivos, IRepositorioManutencoes
     {
         private readonly IMongoCollection<Ativo> ativos;
 
-        public RepositorioAtivosMongoDB(IMongoClient cliente)
+        public RepositorioMongoDB(IMongoClient cliente)
             => ativos = cliente.GetDatabase("sga").GetCollection<Ativo>("ativos");
 
         public void Atualizar(Ativo ativo)
@@ -23,7 +23,7 @@ namespace AtivosApi.Database.Repositories
         public void Inserir(Ativo ativo)
             => ativos.InsertOne(ativo);
 
-        public void InserirManutencao(Guid id, Manutencao manutencao)
+        public void Inserir(Guid id, Manutencao manutencao)
         {
             var atualizacao = Builders<Ativo>.Update.Push(a => a.Manutencoes, manutencao);
             ativos.UpdateOne(a => a.Identificador == id, atualizacao);
