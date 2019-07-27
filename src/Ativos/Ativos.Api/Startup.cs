@@ -2,6 +2,7 @@
 using Ativos.Dominio.Models;
 using Ativos.Dominio.Validations;
 using Ativos.Infra.Repositories;
+using Ativos.Infra.Services;
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,6 +32,8 @@ namespace AtivosApi
 
             services.AddSingleton<IValidator<Ativo>, ValidadorAtivo>();
             services.AddSingleton<IValidator<Manutencao>, ValidadorManutencao>();
+
+            services.AddScoped<IServicoAquisicoes, MockServicoAquisicoes>();
 
             var logger = new LoggerConfiguration()
                 .WriteTo.Console()

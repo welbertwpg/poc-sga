@@ -15,53 +15,64 @@ namespace AtivosApi.Controllers
         private readonly IRepositorioManutencoes repositorioManutencoes;
         private readonly IValidator<Ativo> validadorAtivos;
         private readonly IValidator<Manutencao> validadorManutencao;
+        private readonly IServicoAquisicoes servicoAquisicoes;
 
         public AtivosController(IRepositorioAtivos repositorioAtivos,
             IRepositorioManutencoes repositorioManutencoes,
             IValidator<Ativo> validadorAtivos,
-            IValidator<Manutencao> validadorManutencao)
+            IValidator<Manutencao> validadorManutencao,
+            IServicoAquisicoes servicoAquisicoes)
         {
             this.repositorioAtivos = repositorioAtivos;
             this.repositorioManutencoes = repositorioManutencoes;
             this.validadorAtivos = validadorAtivos;
             this.validadorManutencao = validadorManutencao;
+            this.servicoAquisicoes = servicoAquisicoes;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Ativo>> Get()
+        public ActionResult<IEnumerable<Ativo>> Obter()
             => Ok(repositorioAtivos.Obter());
 
         [HttpGet("{id}")]
-        public ActionResult<Ativo> Get([FromRoute]string id)
+        public ActionResult<Ativo> Obter([FromRoute]string id)
             => Ok(repositorioAtivos.Obter(ObjectId.Parse(id)));
 
         [HttpPost]
-        public void Post([FromBody]Ativo ativo)
+        public void Inserir([FromBody]Ativo ativo)
         {
             validadorAtivos.ValidateAndThrow(ativo);
             repositorioAtivos.Inserir(ativo);
         }
 
         [HttpPost("{id}/manutencao")]
-        public void Post([FromRoute]string id, [FromBody]Manutencao manutencao)
+        public void InserirManutencao([FromRoute]string id, [FromBody]Manutencao manutencao)
         {
             validadorManutencao.ValidateAndThrow(manutencao);
             repositorioManutencoes.Inserir(ObjectId.Parse(id), manutencao);
         }
 
-        [HttpPut("{id}/manutencao/{idManutencao}")]
-        public void Put([FromRoute]string id, [FromRoute]string idManutencao)
-            => repositorioManutencoes.AtualizarStatus(ObjectId.Parse(id), ObjectId.Parse(idManutencao), true);
-
         [HttpPut("{id}")]
-        public void Put([FromBody]Ativo ativo)
+        public void Atualizar([FromBody]Ativo ativo)
         {
             validadorAtivos.ValidateAndThrow(ativo);
             repositorioAtivos.Atualizar(ativo);
         }
 
+        [HttpPut("{id}/manutencao/{idManutencao}")]
+        public void AtualizarManutencao([FromRoute]string id, [FromRoute]string idManutencao)
+            => repositorioManutencoes.AtualizarStatus(ObjectId.Parse(id), ObjectId.Parse(idManutencao), true);
+
         [HttpDelete("{id}")]
-        public void Delete([FromRoute]string id)
+        public void Deletar([FromRoute]string id)
             => repositorioAtivos.Deletar(ObjectId.Parse(id));
+
+        [HttpPost("adquirir/{id}")]
+        public void Adquirir([FromRoute]int id)
+        {
+            var ativo = servicoAquisicoes.AdquirirAtivo(id);
+            validadorAtivos.ValidateAndThrow(ativo);
+            repositorioAtivos.Inserir(ativo);
+        }
     }
 }
