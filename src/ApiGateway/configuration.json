@@ -1,7 +1,7 @@
 {
   "ReRoutes": [
     {
-      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamPathTemplate": "/api{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -9,8 +9,8 @@
           "Port": 5001
         }
       ],
-      "UpstreamPathTemplate": "/api/ativos/{everything}",
-      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+      "UpstreamPathTemplate": "/ativos/api{everything}",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/{everything}",
@@ -21,7 +21,7 @@
           "Port": 5002
         }
       ],
-      "UpstreamPathTemplate": "/api/monitoramento/{everything}",
+      "UpstreamPathTemplate": "/monitoramento/api/{everything}",
       "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
     },
     {
@@ -33,7 +33,7 @@
           "Port": 5003
         }
       ],
-      "UpstreamPathTemplate": "/api/processos/{everything}",
+      "UpstreamPathTemplate": "/processos/api/{everything}",
       "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
     }
   ],

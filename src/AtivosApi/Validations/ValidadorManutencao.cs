@@ -15,9 +15,9 @@ namespace AtivosApi.Validations
                 .NotEmpty()
                 .WithMessage("'DataHora' obrigatório");
 
-            RuleFor(m => m.TipoManutencao)
+            RuleFor(m => m.Tipo)
                 .NotEmpty()
-                .WithMessage("'TipoManutencao' obrigatório");
+                .WithMessage("'Tipo' obrigatório");
         }
     }
 }

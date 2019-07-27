@@ -1,10 +1,12 @@
 ﻿using AtivosApi.Models;
-using System;
+using MongoDB.Bson;
 
 namespace AtivosApi.Database.Interfaces
 {
     public interface IRepositorioManutencoes
     {
-        void Inserir(Guid id, Manutencao manutencao);
+        void Inserir(ObjectId id, Manutencao manutencao);
+
+        void AtualizarStatus(ObjectId id, ObjectId idManutencao, bool status);
     }
 }

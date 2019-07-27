@@ -2,7 +2,7 @@
 using AtivosApi.Models;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using MongoDB.Bson;
 using System.Collections.Generic;
 
 namespace AtivosApi.Controllers
@@ -32,32 +32,36 @@ namespace AtivosApi.Controllers
             => Ok(repositorioAtivos.Obter());
 
         [HttpGet("{id}")]
-        public ActionResult<Ativo> Get(Guid id)
-            => Ok(repositorioAtivos.Obter(id));
+        public ActionResult<Ativo> Get([FromRoute]string id)
+            => Ok(repositorioAtivos.Obter(ObjectId.Parse(id)));
 
         [HttpPost]
-        public void Post([FromBody] Ativo ativo)
+        public void Post([FromBody]Ativo ativo)
         {
             validadorAtivos.ValidateAndThrow(ativo);
             repositorioAtivos.Inserir(ativo);
         }
 
         [HttpPost("{id}/manutencao")]
-        public void Post(Guid id, [FromBody] Manutencao manutencao)
+        public void Post([FromRoute]string id, [FromBody]Manutencao manutencao)
         {
             validadorManutencao.ValidateAndThrow(manutencao);
-            repositorioManutencoes.Inserir(id, manutencao);
+            repositorioManutencoes.Inserir(ObjectId.Parse(id), manutencao);
         }
 
+        [HttpPut("{id}/manutencao/{idManutencao}")]
+        public void Put([FromRoute]string id, [FromRoute]string idManutencao)
+            => repositorioManutencoes.AtualizarStatus(ObjectId.Parse(id), ObjectId.Parse(idManutencao), true);
+
         [HttpPut("{id}")]
-        public void Put([FromBody] Ativo ativo)
+        public void Put([FromBody]Ativo ativo)
         {
             validadorAtivos.ValidateAndThrow(ativo);
             repositorioAtivos.Atualizar(ativo);
         }
 
         [HttpDelete("{id}")]
-        public void Delete(Guid id)
-            => repositorioAtivos.Deletar(id);
+        public void Delete([FromRoute]string id)
+            => repositorioAtivos.Deletar(ObjectId.Parse(id));
     }
 }
