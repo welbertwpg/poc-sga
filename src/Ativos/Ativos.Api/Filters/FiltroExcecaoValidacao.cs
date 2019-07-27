@@ -24,7 +24,7 @@ namespace CrossCutting.Exceptions.Filters
                 contexto.Result = new ObjectResult(stringBuilder.ToString()) { StatusCode = 400 };
             }
 
-            logger.Error(contexto.Exception, "{Timestamp} [{Level}] {Message}{NewLine}{Exception}");
+            logger.Error(contexto.Exception, "Erro de validação");
         }
     }
 }

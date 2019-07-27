@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 
-namespace AtivosApi.Models
+namespace Ativos.Dominio.Models
 {
     public class Ativo
     {

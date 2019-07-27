@@ -15,4 +15,9 @@
     <PackageReference Include="Serilog.Sinks.File" Version="4.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Ativos.Dominio\Ativos.Dominio.csproj" />
+    <ProjectReference Include="..\Ativos.Infra\Ativos.Infra.csproj" />
+  </ItemGroup>
+
 </Project>

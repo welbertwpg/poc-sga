@@ -1,4 +1,4 @@
-﻿namespace AtivosApi.Models
+﻿namespace Ativos.Dominio.Models
 {
     public enum TipoAtivo
     {

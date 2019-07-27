@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AtivosApi.Models
+namespace Ativos.Dominio.Models
 {
     public class CronogramaManutencao
     {

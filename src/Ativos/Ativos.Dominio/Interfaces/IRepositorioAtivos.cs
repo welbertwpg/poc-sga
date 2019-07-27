@@ -1,8 +1,8 @@
-﻿using AtivosApi.Models;
+﻿using Ativos.Dominio.Models;
 using MongoDB.Bson;
 using System.Collections.Generic;
 
-namespace AtivosApi.Database.Interfaces
+namespace Ativos.Dominio.Interfaces
 {
     public interface IRepositorioAtivos
     {

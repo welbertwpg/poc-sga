@@ -1,7 +1,7 @@
-﻿using AtivosApi.Database.Interfaces;
-using AtivosApi.Database.Repositories;
-using AtivosApi.Models;
-using AtivosApi.Validations;
+﻿using Ativos.Dominio.Interfaces;
+using Ativos.Dominio.Models;
+using Ativos.Dominio.Validations;
+using Ativos.Infra.Repositories;
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

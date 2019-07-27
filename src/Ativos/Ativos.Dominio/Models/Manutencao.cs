@@ -2,7 +2,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 
-namespace AtivosApi.Models
+namespace Ativos.Dominio.Models
 {
     public class Manutencao
     {

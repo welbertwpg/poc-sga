@@ -1,7 +1,7 @@
-﻿using AtivosApi.Models;
+﻿using Ativos.Dominio.Models;
 using FluentValidation;
 
-namespace AtivosApi.Validations
+namespace Ativos.Dominio.Validations
 {
     public class ValidadorManutencao : AbstractValidator<Manutencao>
     {

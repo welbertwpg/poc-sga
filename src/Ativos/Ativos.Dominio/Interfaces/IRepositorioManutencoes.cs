@@ -1,7 +1,7 @@
-﻿using AtivosApi.Models;
+﻿using Ativos.Dominio.Models;
 using MongoDB.Bson;
 
-namespace AtivosApi.Database.Interfaces
+namespace Ativos.Dominio.Interfaces
 {
     public interface IRepositorioManutencoes
     {

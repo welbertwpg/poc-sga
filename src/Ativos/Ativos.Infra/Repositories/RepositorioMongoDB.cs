@@ -1,11 +1,11 @@
-﻿using AtivosApi.Database.Interfaces;
-using AtivosApi.Models;
+﻿using Ativos.Dominio.Interfaces;
+using Ativos.Dominio.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AtivosApi.Database.Repositories
+namespace Ativos.Infra.Repositories
 {
     public class RepositorioMongoDB : IRepositorioAtivos, IRepositorioManutencoes
     {
