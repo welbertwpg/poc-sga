@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace Ativos.Infra.Repositories
 {
-    public class RepositorioMongoDB : IRepositorioAtivos, IRepositorioManutencoes
+    public class RepositorioAtivosMongoDB : IRepositorioAtivos, IRepositorioManutencoes
     {
         private readonly IMongoCollection<Ativo> ativos;
 
-        public RepositorioMongoDB(IMongoClient cliente)
+        public RepositorioAtivosMongoDB(IMongoClient cliente)
             => ativos = cliente.GetDatabase("sga").GetCollection<Ativo>("ativos");
 
         public void Atualizar(Ativo ativo)

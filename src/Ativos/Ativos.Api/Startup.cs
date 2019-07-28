@@ -27,11 +27,13 @@ namespace AtivosApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IMongoClient>(provider => new MongoClient(Configuration.GetConnectionString("MongoDB")));
-            services.AddScoped<IRepositorioAtivos, RepositorioMongoDB>();
-            services.AddScoped<IRepositorioManutencoes, RepositorioMongoDB>();
+            services.AddScoped<IRepositorioAtivos, RepositorioAtivosMongoDB>();
+            services.AddScoped<IRepositorioManutencoes, RepositorioAtivosMongoDB>();
+            services.AddScoped<IRepositorioCronogramas, RepositorioCronogramasMongoDB>();
 
             services.AddSingleton<IValidator<Ativo>, ValidadorAtivo>();
             services.AddSingleton<IValidator<Manutencao>, ValidadorManutencao>();
+            services.AddSingleton<IValidator<CronogramaManutencao>, ValidadorCronograma>();
 
             services.AddScoped<IServicoAquisicoes, MockServicoAquisicoes>();
 
