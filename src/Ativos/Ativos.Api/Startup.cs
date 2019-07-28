@@ -3,6 +3,7 @@ using Ativos.Dominio.Models;
 using Ativos.Dominio.Validations;
 using Ativos.Infra.Repositories;
 using Ativos.Infra.Services;
+using CrossCutting.Exceptions.Filters;
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,7 +43,7 @@ namespace AtivosApi
                 .CreateLogger();
             services.AddSingleton<ILogger>(logger);
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(setup => setup.Filters.Add(new FiltroExcecaoValidacao(logger))).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
