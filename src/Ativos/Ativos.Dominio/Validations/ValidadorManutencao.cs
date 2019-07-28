@@ -1,5 +1,6 @@
 ﻿using Ativos.Dominio.Models;
 using FluentValidation;
+using System;
 
 namespace Ativos.Dominio.Validations
 {
@@ -18,6 +19,10 @@ namespace Ativos.Dominio.Validations
             RuleFor(m => m.Tipo)
                 .NotEmpty()
                 .WithMessage("'Tipo' obrigatório");
+
+            RuleFor(m => m.DataHora)
+                .GreaterThanOrEqualTo(DateTime.Now)
+                .WithMessage("'DataHora' deve ser maior que a data atual");
         }
     }
 }

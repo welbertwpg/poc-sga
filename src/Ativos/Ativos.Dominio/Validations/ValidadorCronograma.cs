@@ -7,21 +7,28 @@ namespace Ativos.Dominio.Validations
     {
         public ValidadorCronograma()
         {
-            RuleFor(m => m.Identificador)
+            RuleFor(c => c.Identificador)
                 .NotEmpty()
                 .WithMessage("'Identificador' obrigatório");
 
-            RuleFor(m => m.TipoAtivo)
+            RuleFor(c => c.TipoAtivo)
                 .NotEmpty()
                 .WithMessage("'TipoAtivo' obrigatório");
 
-            RuleFor(m => m.Frequencia)
+            RuleFor(c => c.Frequencia)
                 .NotEmpty()
                 .WithMessage("'Frequencia' obrigatório");
 
-            RuleFor(a => a.IntervaloHorasUso)
+            RuleFor(c => c.IntervaloHorasUso)
+                .NotEmpty()
                 .GreaterThan(0)
+                .When(c => c.Frequencia == FrequenciaManutencao.Intervalo)
                 .WithMessage("'IntervaloHorasUso' deve ser um número positivo");
+
+            RuleFor(c => c.IntervaloHorasUso)
+                .Empty()
+                .When(c => c.Frequencia != FrequenciaManutencao.Intervalo)
+                .WithMessage("'IntervaloHorasUso' não deve ser preenchido para uma frequência determinada");
         }
     }
 }

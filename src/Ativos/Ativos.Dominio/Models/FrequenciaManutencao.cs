@@ -1,13 +1,11 @@
-﻿namespace AtivosApi.Models
+﻿namespace Ativos.Dominio.Models
 {
     public enum FrequenciaManutencao
     {
         Diaria = 1,
         Semanal = 2,
-        Quinzenal = 3,
-        Mensal = 4,
-        Trimestral = 5,
-        Semestral = 6,
-        Anual = 7
+        Mensal = 3,
+        Anual = 4,
+        Intervalo = 5
     }
 }

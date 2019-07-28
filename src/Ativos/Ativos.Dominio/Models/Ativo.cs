@@ -2,6 +2,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Ativos.Dominio.Models
 {
@@ -23,5 +24,15 @@ namespace Ativos.Dominio.Models
         public int MediaHorasUsoDiariamente { get; set; }
 
         public IList<Manutencao> Manutencoes { get; set; }
+
+        public DateTime ObterDataUltimaManutencao()
+            => Manutencoes.FirstOrDefault(m => m.Realizada)?.DataHora ?? DataAquisicao;
+
+        public int ObterHorasUso()
+        {
+            var dataUltimaManutencao = ObterDataUltimaManutencao();
+            int diferencaDias = (DateTime.Now - dataUltimaManutencao).Days;
+            return diferencaDias * MediaHorasUsoDiariamente;
+        }
     }
 }
