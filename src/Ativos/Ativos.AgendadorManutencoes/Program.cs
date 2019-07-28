@@ -1,4 +1,5 @@
 ﻿using Ativos.Dominio.Models;
+using Ativos.Dominio.Validations;
 using Ativos.Infra.Repositories;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
@@ -24,6 +25,7 @@ namespace Ativos.AgendadorManutencoes
             var mongoDb = new MongoClient(configuration.GetConnectionString("MongoDB"));
             var repositorioCronogramas = new RepositorioCronogramasMongoDB(mongoDb);
             var repositorioAtivos = new RepositorioAtivosMongoDB(mongoDb);
+            var validadorManutencoes = new ValidadorManutencao();
             var intervalo = Convert.ToInt32(configuration["Intervalo"]);
 
             while (true)
@@ -46,6 +48,15 @@ namespace Ativos.AgendadorManutencoes
                             Tipo = TipoManutencao.Preventiva,
                             DataHora = cronograma.ObterDataProximaManutencao()
                         };
+
+                        var resultadoValidacao = validadorManutencoes.Validate(manutencao);
+                        if (!resultadoValidacao.IsValid)
+                        {
+                            var erro = string.Join(';', resultadoValidacao.Errors.Select(e => e.ErrorMessage));
+                            logger.Error($"Erro ao criar manutenção: {erro}");
+                            continue;
+                        }
+
                         repositorioAtivos.Inserir(ativo.Identificador, manutencao);
                         logger.Information($"Manutenção '{manutencao.Identificador}' criada para o ativo '{ativo.Identificador}' através do cronograma '{cronograma.Identificador}'");
 
