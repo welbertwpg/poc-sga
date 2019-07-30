@@ -1,6 +1,6 @@
-﻿using ServidorMonitoramento.Models;
+﻿using Monitoramento.Dominio.Models;
 
-namespace ServidorMonitoramento.Interfaces
+namespace Monitoramento.Dominio.Interfaces
 {
     public interface IClienteSensoresHub
     {

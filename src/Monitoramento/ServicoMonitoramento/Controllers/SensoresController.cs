@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ServidorMonitoramento.Interfaces;
-using ServidorMonitoramento.Models;
+using Monitoramento.Dominio.Interfaces;
+using Monitoramento.Dominio.Models;
 
 namespace ServidorMonitoramento.Controllers
 {

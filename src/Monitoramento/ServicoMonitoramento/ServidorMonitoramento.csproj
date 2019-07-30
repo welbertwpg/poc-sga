@@ -8,9 +8,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="RabbitMQ.Client" Version="5.1.0" />
     <PackageReference Include="Serilog" Version="2.8.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Monitoramento.Dominio\Monitoramento.Dominio.csproj" />
+    <ProjectReference Include="..\..\Monitoramento.Infra\Monitoramento.Infra.csproj" />
   </ItemGroup>
 
 </Project>

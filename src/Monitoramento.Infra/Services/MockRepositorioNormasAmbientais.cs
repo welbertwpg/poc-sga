@@ -1,8 +1,8 @@
-﻿using ServidorMonitoramento.Interfaces;
-using ServidorMonitoramento.Models;
+﻿using Monitoramento.Dominio.Interfaces;
+using Monitoramento.Dominio.Models;
 using System;
 
-namespace ServidorMonitoramento.Services
+namespace Monitoramento.Infra.Services
 {
     public class MockRepositorioNormasAmbientais : IRepositorioNormasAmbientais
     {
@@ -11,7 +11,6 @@ namespace ServidorMonitoramento.Services
             var random = new Random();
             return new NormasAmbientais
             {
-                DesvioMaximoPermitido = random.NextDouble(),
                 NivelMaximoPermitido = random.NextDouble(),
                 PressaoMaximaPermitida = random.NextDouble()
             };

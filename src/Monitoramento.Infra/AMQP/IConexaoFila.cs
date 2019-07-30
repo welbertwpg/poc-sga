@@ -1,4 +1,4 @@
-﻿namespace ServidorMonitoramento.AMQP
+﻿namespace Monitoramento.Infra.AMQP
 {
     public interface IConexaoFila
     {

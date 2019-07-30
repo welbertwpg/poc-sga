@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using ServidorMonitoramento.AMQP;
-using ServidorMonitoramento.Interfaces;
-using ServidorMonitoramento.Models;
+using Monitoramento.Dominio.Interfaces;
+using Monitoramento.Dominio.Models;
+using Monitoramento.Infra.AMQP;
 
 namespace ServidorMonitoramento.Hubs
 {

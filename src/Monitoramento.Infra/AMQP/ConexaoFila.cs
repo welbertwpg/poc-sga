@@ -3,7 +3,7 @@ using RabbitMQ.Client;
 using System;
 using System.Text;
 
-namespace ServidorMonitoramento.AMQP
+namespace Monitoramento.Infra.AMQP
 {
     public class ConexaoFila : IConexaoFila, IDisposable
     {

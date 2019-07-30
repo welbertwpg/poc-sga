@@ -1,8 +1,8 @@
-﻿using ServidorMonitoramento.Interfaces;
-using ServidorMonitoramento.Models;
+﻿using Monitoramento.Dominio.Interfaces;
+using Monitoramento.Dominio.Models;
 using System;
 
-namespace ServidorMonitoramento.Services
+namespace Monitoramento.Infra.Services
 {
     public class MockSensores : ISensores
     {

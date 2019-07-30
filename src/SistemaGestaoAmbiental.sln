@@ -28,6 +28,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ativos.Dominio", "Ativos\At
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ativos.AgendadorManutencoes", "Ativos\Ativos.AgendadorManutencoes\Ativos.AgendadorManutencoes.csproj", "{355DBDB4-ABA4-4693-B13F-2A6522D19576}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitoramento.Dominio", "Monitoramento.Dominio\Monitoramento.Dominio.csproj", "{5580543F-7C25-49EF-9F04-D53D13B664FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitoramento.Infra", "Monitoramento.Infra\Monitoramento.Infra.csproj", "{DF4D334A-9541-4114-9E58-6D5EEE4F5829}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +66,14 @@ Global
 		{355DBDB4-ABA4-4693-B13F-2A6522D19576}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{355DBDB4-ABA4-4693-B13F-2A6522D19576}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{355DBDB4-ABA4-4693-B13F-2A6522D19576}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5580543F-7C25-49EF-9F04-D53D13B664FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5580543F-7C25-49EF-9F04-D53D13B664FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5580543F-7C25-49EF-9F04-D53D13B664FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5580543F-7C25-49EF-9F04-D53D13B664FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF4D334A-9541-4114-9E58-6D5EEE4F5829}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF4D334A-9541-4114-9E58-6D5EEE4F5829}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF4D334A-9541-4114-9E58-6D5EEE4F5829}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF4D334A-9541-4114-9E58-6D5EEE4F5829}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +85,8 @@ Global
 		{F3D46F2A-C697-4470-9534-43CB0482AA02} = {670BE788-6922-46B5-A430-5261CCADEFCB}
 		{A5306CC0-C21C-4EFB-826C-902BCD3AD40A} = {670BE788-6922-46B5-A430-5261CCADEFCB}
 		{355DBDB4-ABA4-4693-B13F-2A6522D19576} = {670BE788-6922-46B5-A430-5261CCADEFCB}
+		{5580543F-7C25-49EF-9F04-D53D13B664FE} = {89035471-2816-413E-A953-896184D52548}
+		{DF4D334A-9541-4114-9E58-6D5EEE4F5829} = {89035471-2816-413E-A953-896184D52548}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FCFAAAFC-6FBA-428D-95DF-6089D08F0C9A}
