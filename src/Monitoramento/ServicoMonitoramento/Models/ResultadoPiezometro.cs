@@ -1,4 +1,4 @@
-﻿namespace MonitoramentoApi.Models
+﻿namespace ServidorMonitoramento.Models
 {
     public class ResultadoPiezometro
     {

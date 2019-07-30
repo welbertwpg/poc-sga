@@ -1,8 +1,8 @@
-﻿using MonitoramentoApi.Interfaces;
-using MonitoramentoApi.Models;
+﻿using ServidorMonitoramento.Interfaces;
+using ServidorMonitoramento.Models;
 using System;
 
-namespace MonitoramentoApi.Services
+namespace ServidorMonitoramento.Services
 {
     public class MockSensores : ISensores
     {

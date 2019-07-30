@@ -1,6 +1,6 @@
-﻿using MonitoramentoApi.Models;
+﻿using ServidorMonitoramento.Models;
 
-namespace MonitoramentoApi.Interfaces
+namespace ServidorMonitoramento.Interfaces
 {
     public interface ISensores
     {

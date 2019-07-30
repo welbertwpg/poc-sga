@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MonitoramentoApi.Interfaces;
-using MonitoramentoApi.Services;
+using ServidorMonitoramento.Hubs;
+using ServidorMonitoramento.Interfaces;
+using ServidorMonitoramento.Services;
+using StackExchange.Redis;
 
-namespace MonitoramentoApi
+namespace ServidorMonitoramento
 {
     public class Startup
     {
@@ -20,9 +21,20 @@ namespace MonitoramentoApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<ISensores, MockSensores>();
+            services.AddSingleton(provider =>
+            {
+                var configurationOptions = new ConfigurationOptions
+                {
+                    EndPoints = { Configuration["redis.connection"] }
+                };
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                return ConnectionMultiplexer.Connect(configurationOptions).GetDatabase();
+            });
+
+            services.AddSingleton<ISensores, MockSensores>();
+            services.AddSingleton<IRepositorioNormasAmbientais, MockRepositorioNormasAmbientais>();
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,8 +50,12 @@ namespace MonitoramentoApi
                 app.UseHsts();
             }
 
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<SensoresHub>("/sensoresHub");
+            });
+
             app.UseHttpsRedirection();
-            app.UseMvc();
         }
     }
 }

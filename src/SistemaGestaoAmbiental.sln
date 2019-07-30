@@ -16,17 +16,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Processos", "Processos", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Monitoramento", "Monitoramento", "{89035471-2816-413E-A953-896184D52548}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonitoramentoApi", "Monitoramento\MonitoramentoApi\MonitoramentoApi.csproj", "{CBACCC82-940A-4411-805D-F4D5F44D4D65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServidorMonitoramento", "Monitoramento\ServicoMonitoramento\ServidorMonitoramento.csproj", "{CBACCC82-940A-4411-805D-F4D5F44D4D65}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessosApi", "Processos\ProcessosApi\ProcessosApi.csproj", "{7E9C5A4F-2456-4470-99C5-8A08449A2139}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ativos.Infra", "Ativos\Ativos.Infra\Ativos.Infra.csproj", "{FF681112-C2DB-47BC-8F9A-B09F1BFABC2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ativos.Infra", "Ativos\Ativos.Infra\Ativos.Infra.csproj", "{FF681112-C2DB-47BC-8F9A-B09F1BFABC2A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ativos.Api", "Ativos\Ativos.Api\Ativos.Api.csproj", "{F3D46F2A-C697-4470-9534-43CB0482AA02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ativos.Dominio", "Ativos\Ativos.Dominio\Ativos.Dominio.csproj", "{A5306CC0-C21C-4EFB-826C-902BCD3AD40A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ativos.Dominio", "Ativos\Ativos.Dominio\Ativos.Dominio.csproj", "{A5306CC0-C21C-4EFB-826C-902BCD3AD40A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ativos.AgendadorManutencoes", "Ativos\Ativos.AgendadorManutencoes\Ativos.AgendadorManutencoes.csproj", "{355DBDB4-ABA4-4693-B13F-2A6522D19576}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ativos.AgendadorManutencoes", "Ativos\Ativos.AgendadorManutencoes\Ativos.AgendadorManutencoes.csproj", "{355DBDB4-ABA4-4693-B13F-2A6522D19576}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

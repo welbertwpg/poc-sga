@@ -3,9 +3,9 @@ using RabbitMQ.Client;
 using System;
 using System.Text;
 
-namespace MonitoramentoApi.AMQP
+namespace ServidorMonitoramento.AMQP
 {
-    public class ConexaoFila : IDisposable
+    public class ConexaoFila : IConexaoFila, IDisposable
     {
         private readonly IConnection conexao;
         private readonly IModel canal;
