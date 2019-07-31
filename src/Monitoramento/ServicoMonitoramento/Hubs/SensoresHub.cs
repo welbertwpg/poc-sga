@@ -2,6 +2,7 @@
 using Monitoramento.Dominio.Interfaces;
 using Monitoramento.Dominio.Models;
 using Monitoramento.Infra.AMQP;
+using ServidorMonitoramento.Interfaces;
 
 namespace ServidorMonitoramento.Hubs
 {
