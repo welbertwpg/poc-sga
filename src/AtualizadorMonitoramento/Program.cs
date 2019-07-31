@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Monitoramento.Dominio.Interfaces;
 using Monitoramento.Infra.Services;
+using Newtonsoft.Json;
 using Serilog;
 using System;
 using System.Threading;
@@ -10,7 +11,7 @@ namespace AtualizadorMonitoramento
 {
     class Program
     {
-        async static void Main(string[] args)
+        static void Main(string[] args)
         {
             var logger = new LoggerConfiguration()
                 .WriteTo.Console()
@@ -32,17 +33,22 @@ namespace AtualizadorMonitoramento
             };
 
             logger.Information($"Conectando no endereço {endpointSingnalr}");
-            await conexao.StartAsync();
+            conexao.StartAsync().Wait();
             logger.Information("Conectado");
 
             var intervalo = Convert.ToInt32(configuration["Intervalo"]);
-            logger.Information($"Tempo de atualização: {intervalo}");
+            logger.Information($"Tempo de atualização: {intervalo}ms");
 
             ISensores sensores = new MockSensores();
             while (true)
             {
                 var resultado = sensores.Obter();
-                await conexao.InvokeAsync("AtualizarResultadosSensores", resultado);
+                var resultadoJson = JsonConvert.SerializeObject(resultado);
+                logger.Information($"Novo resultado: {resultadoJson}");
+
+                conexao.InvokeAsync("AtualizarResultadosSensores", resultado).Wait();
+                logger.Information("Enviado para o SignalR");
+
                 Thread.Sleep(intervalo);
             }
         }

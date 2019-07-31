@@ -9,6 +9,7 @@ namespace Monitoramento.Infra.AMQP
     {
         private readonly IConnection conexao;
         private readonly IModel canal;
+        private readonly string fila;
 
         public ConexaoFila(string host, string fila)
         {
@@ -21,6 +22,8 @@ namespace Monitoramento.Infra.AMQP
                                  exclusive: false,
                                  autoDelete: false,
                                  arguments: null);
+
+            this.fila = fila;
         }
 
         public void EnviarMensagem(object mensagem)
@@ -32,7 +35,7 @@ namespace Monitoramento.Infra.AMQP
             properties.Persistent = true;
 
             canal.BasicPublish(exchange: "",
-                                routingKey: "task_queue",
+                                routingKey: fila,
                                 basicProperties: properties,
                                 body: Encoding.UTF8.GetBytes(mensagem));
         }

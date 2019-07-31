@@ -1,9 +1,10 @@
 ﻿using Monitoramento.Dominio.Models;
+using System.Threading.Tasks;
 
 namespace ServidorMonitoramento.Interfaces
 {
     public interface IClienteSensoresHub
     {
-        void AtualizarResultadosSensores(ResultadoSensores resultadoSensores);
+        Task AtualizarResultadosSensores(ResultadoSensores resultadoSensores);
     }
 }

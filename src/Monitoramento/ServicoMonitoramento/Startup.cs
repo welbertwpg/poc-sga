@@ -22,7 +22,7 @@ namespace ServidorMonitoramento
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IConexaoFila, ConexaoFila>();
+            services.AddSingleton<IConexaoFila>(provider => new ConexaoFila(Configuration["RabbitMQ:Host"], Configuration["RabbitMQ:Fila"]));
             services.AddSingleton<ISensores, MockSensores>();
             services.AddSingleton<IRepositorioNormasAmbientais, MockRepositorioNormasAmbientais>();
 
