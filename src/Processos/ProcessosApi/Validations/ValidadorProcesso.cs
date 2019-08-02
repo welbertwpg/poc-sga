@@ -8,6 +8,10 @@ namespace ProcessosApi.Validations
     {
         public ValidadorProcesso()
         {
+            RuleFor(p => p.Identificador)
+                .NotEmpty()
+                .WithMessage("'Identificador' obrigatório");
+
             RuleFor(p => p.Nome)
                 .NotEmpty()
                 .WithMessage("'Nome' obrigatório");
@@ -28,7 +32,7 @@ namespace ProcessosApi.Validations
                 .Must(etapas =>
                 {
                     foreach (var etapa in etapas.Where(e => e.Tipo != TipoEtapa.Inicio))
-                        if (!etapas.Any(e => e.EtapasReferenciadas.Contains(etapa.Id)))
+                        if (!etapas.Any(e => e.EtapasReferenciadas.Contains(etapa.Identificador)))
                             return false;
 
                     return true;
