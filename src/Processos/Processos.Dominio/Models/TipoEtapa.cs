@@ -1,4 +1,4 @@
-﻿namespace ProcessosApi.Models
+﻿namespace Processos.Dominio.Models
 {
     public enum TipoEtapa
     {

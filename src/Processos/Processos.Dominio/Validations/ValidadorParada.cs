@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using ProcessosApi.Models;
+using Processos.Dominio.Models;
 
-namespace ProcessosApi.Validations
+namespace Processos.Dominio.Validations
 {
     public class ValidadorParada : AbstractValidator<Parada>
     {

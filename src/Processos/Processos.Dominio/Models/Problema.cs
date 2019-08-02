@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ProcessosApi.Models
+namespace Processos.Dominio.Models
 {
-    public class Parada
+    public class Problema
     {
         public Guid Identificador { get; set; }
         public DateTime Data { get; set; }

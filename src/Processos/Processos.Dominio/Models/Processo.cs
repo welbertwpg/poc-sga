@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ProcessosApi.Models
+namespace Processos.Dominio.Models
 {
     public class Processo
     {

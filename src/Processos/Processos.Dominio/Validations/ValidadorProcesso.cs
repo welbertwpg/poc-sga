@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
-using ProcessosApi.Models;
+using Processos.Dominio.Models;
 using System.Linq;
 
-namespace ProcessosApi.Validations
+namespace Processos.Dominio.Validations
 {
     public class ValidadorProcesso : AbstractValidator<Processo>
     {
