@@ -6,7 +6,7 @@ namespace ProcessosApi.Validations
 {
     public class ValidadorProcesso : AbstractValidator<Processo>
     {
-        public ValidadorProcesso()
+        public ValidadorProcesso(IValidator<Etapa> validadorEtapa)
         {
             RuleFor(p => p.Identificador)
                 .NotEmpty()
@@ -40,7 +40,7 @@ namespace ProcessosApi.Validations
                 .WithMessage("Existem etapas não referenciadas");
 
             RuleForEach(p => p.Etapas)
-                .SetValidator(new ValidadorEtapa());
+                .SetValidator(validadorEtapa);
         }
     }
 }
