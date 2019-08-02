@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Monitoramento.Api.Interfaces;
+using Monitoramento.Dominio.Entidades;
 using Monitoramento.Dominio.Interfaces;
-using Monitoramento.Dominio.Models;
 using Monitoramento.Infra.AMQP;
-using ServidorMonitoramento.Interfaces;
 
-namespace ServidorMonitoramento.Hubs
+namespace Monitoramento.Api.Hubs
 {
     public class SensoresHub : Hub<IClienteSensoresHub>
     {

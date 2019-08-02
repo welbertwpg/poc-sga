@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Monitoramento.Api.Hubs;
 using Monitoramento.Dominio.Interfaces;
 using Monitoramento.Infra.AMQP;
-using Monitoramento.Infra.Services;
-using ServidorMonitoramento.Hubs;
+using Monitoramento.Infra.Servicos;
 
-namespace ServidorMonitoramento
+namespace Monitoramento.Api
 {
     public class Startup
     {

@@ -1,6 +1,6 @@
-﻿using Ativos.Dominio.Models;
-using Ativos.Dominio.Validations;
-using Ativos.Infra.Repositories;
+﻿using Ativos.Dominio.Entidades;
+using Ativos.Dominio.Validacoes;
+using Ativos.Infra.Repositorios;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using Serilog;

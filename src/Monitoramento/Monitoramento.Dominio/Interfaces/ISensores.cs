@@ -1,4 +1,4 @@
-﻿using Monitoramento.Dominio.Models;
+﻿using Monitoramento.Dominio.Entidades;
 
 namespace Monitoramento.Dominio.Interfaces
 {

@@ -1,7 +1,7 @@
-﻿using Monitoramento.Dominio.Models;
+﻿using Monitoramento.Dominio.Entidades;
 using System.Threading.Tasks;
 
-namespace ServidorMonitoramento.Interfaces
+namespace Monitoramento.Api.Interfaces
 {
     public interface IClienteSensoresHub
     {

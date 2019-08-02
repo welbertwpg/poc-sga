@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace ServidorMonitoramento
+namespace Monitoramento.Api
 {
     public class Program
     {

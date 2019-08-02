@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Monitoramento.Dominio.Interfaces;
-using Monitoramento.Dominio.Models;
+using Monitoramento.Dominio.Entidades;
 
-namespace ServidorMonitoramento.Controllers
+namespace Monitoramento.Api.Controllers
 {
     [Route("api/sensores")]
     [ApiController]

@@ -1,5 +1,5 @@
 ﻿using Ativos.Dominio.Interfaces;
-using Ativos.Dominio.Models;
+using Ativos.Dominio.Entidades;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;

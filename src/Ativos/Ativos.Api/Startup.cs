@@ -1,9 +1,9 @@
-﻿using Ativos.Dominio.Interfaces;
-using Ativos.Dominio.Models;
-using Ativos.Dominio.Validations;
-using Ativos.Infra.Repositories;
-using Ativos.Infra.Services;
-using CrossCutting.Exceptions.Filters;
+﻿using Ativos.Api.Filtros;
+using Ativos.Dominio.Entidades;
+using Ativos.Dominio.Interfaces;
+using Ativos.Dominio.Validacoes;
+using Ativos.Infra.Repositorios;
+using Ativos.Infra.Servicos;
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using Serilog;
 
-namespace AtivosApi
+namespace Ativos.Api
 {
     public class Startup
     {

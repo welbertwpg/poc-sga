@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Configuration;
 using Monitoramento.Dominio.Interfaces;
-using Monitoramento.Infra.Services;
+using Monitoramento.Infra.Servicos;
 using Newtonsoft.Json;
 using Serilog;
 using System;
 using System.Threading;
 
-namespace AtualizadorMonitoramento
+namespace Monitoramento.Atualizador
 {
     class Program
     {

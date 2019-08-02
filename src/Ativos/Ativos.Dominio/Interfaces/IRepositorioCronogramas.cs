@@ -1,4 +1,4 @@
-﻿using Ativos.Dominio.Models;
+﻿using Ativos.Dominio.Entidades;
 using MongoDB.Bson;
 using System.Collections.Generic;
 

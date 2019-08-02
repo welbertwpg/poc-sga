@@ -1,4 +1,4 @@
-﻿using Ativos.Dominio.Models;
+﻿using Ativos.Dominio.Entidades;
 
 namespace Ativos.Dominio.Interfaces
 {
