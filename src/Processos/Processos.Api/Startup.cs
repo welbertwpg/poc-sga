@@ -31,7 +31,7 @@ namespace Processos.Api
 
             services.AddScoped<IRepositorioProcessos, RepositorioProcessos>();
             //services.AddScoped<IRepositorioProblemas, RepositorioProblemas>();
-            //services.AddScoped<IRepositorioParadas, RepositorioParadas>();
+            services.AddScoped<IRepositorioParadas, RepositorioParadas>();
 
             services.AddSingleton<IValidator<Processo>, ValidadorProcesso>();
             services.AddSingleton<IValidator<Etapa>, ValidadorEtapa>();
