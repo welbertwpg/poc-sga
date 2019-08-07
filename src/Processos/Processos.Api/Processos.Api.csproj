@@ -11,4 +11,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Processos.Dominio\Processos.Dominio.csproj" />
+    <ProjectReference Include="..\Processos.Infra\Processos.Infra.csproj" />
+  </ItemGroup>
+
 </Project>
