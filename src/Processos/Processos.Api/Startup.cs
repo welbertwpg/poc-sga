@@ -30,7 +30,7 @@ namespace Processos.Api
                 o => o.MigrationsAssembly("Processos.Infra")));
 
             services.AddScoped<IRepositorioProcessos, RepositorioProcessos>();
-            //services.AddScoped<IRepositorioProblemas, RepositorioProblemas>();
+            services.AddScoped<IRepositorioProblemas, RepositorioProblemas>();
             services.AddScoped<IRepositorioParadas, RepositorioParadas>();
 
             services.AddSingleton<IValidator<Processo>, ValidadorProcesso>();
