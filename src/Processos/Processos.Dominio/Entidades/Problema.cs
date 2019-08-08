@@ -4,6 +4,9 @@ namespace Processos.Dominio.Entidades
 {
     public class Problema
     {
+        public Problema()
+            => Identificador = Guid.NewGuid();
+
         public Guid Identificador { get; set; }
         public DateTime Data { get; set; }
         public Turno Turno { get; set; }

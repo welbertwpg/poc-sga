@@ -25,7 +25,7 @@ namespace Processos.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ContextoProcessos>(options => 
+            services.AddDbContext<DbContext, ContextoProcessos>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), 
                 o => o.MigrationsAssembly("Processos.Infra")));
 

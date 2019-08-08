@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Processos.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     [ApiController]
     public class ProcessosController : ControllerBase
     {

@@ -5,6 +5,9 @@ namespace Processos.Dominio.Entidades
 {
     public class Etapa
     {
+        public Etapa()
+            => Identificador = Guid.NewGuid();
+
         public Guid Identificador { get; set; }
         public TipoEtapa Tipo { get; set; }
         public string Nome { get; set; }

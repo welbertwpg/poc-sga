@@ -4,7 +4,7 @@ using Monitoramento.Dominio.Entidades;
 
 namespace Monitoramento.Api.Controllers
 {
-    [Route("api/sensores")]
+    [Route("sensores")]
     [ApiController]
     public class SensoresController : ControllerBase
     {

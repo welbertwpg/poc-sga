@@ -5,7 +5,7 @@ using Processos.Dominio.Interfaces;
 
 namespace Processos.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/problemas")]
     [ApiController]
     public class ProblemasController : ControllerBase
     {

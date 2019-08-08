@@ -9,11 +9,11 @@
           "Port": 5001
         }
       ],
-      "UpstreamPathTemplate": "/ativos/api{everything}",
+      "UpstreamPathTemplate": "/api/ativos{everything}",
       "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE" ]
     },
     {
-      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamPathTemplate": "/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -21,11 +21,11 @@
           "Port": 5002
         }
       ],
-      "UpstreamPathTemplate": "/monitoramento/api/{everything}",
-      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+      "UpstreamPathTemplate": "/api/monitoramento/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
     },
     {
-      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamPathTemplate": "/api{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -33,8 +33,8 @@
           "Port": 5003
         }
       ],
-      "UpstreamPathTemplate": "/processos/api/{everything}",
-      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+      "UpstreamPathTemplate": "/api/processos{everything}",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE" ]
     }
   ],
   "GlobalConfiguration": {}
