@@ -21,8 +21,8 @@ namespace Processos.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Processo>> Get([FromQuery]int quantidade = 10, [FromQuery]int pagina = 1)
-            => Ok(repositorioProcessos.Obter(quantidade, pagina));
+        public ActionResult<IEnumerable<Processo>> Get()
+            => Ok(repositorioProcessos.Obter());
 
         [HttpGet("{id}")]
         public ActionResult<Processo> Get(Guid id)

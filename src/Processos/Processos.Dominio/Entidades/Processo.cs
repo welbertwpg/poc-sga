@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace Processos.Dominio.Entidades
@@ -10,6 +11,8 @@ namespace Processos.Dominio.Entidades
 
         public Guid Identificador { get; set; }
         public string Nome { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public ICollection<Etapa> Etapas { get; set; }
     }
 }

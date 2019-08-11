@@ -72,8 +72,8 @@ namespace Processos.Infra.Repositorios
             }
         }
 
-        public IEnumerable<Processo> Obter(int quantidade, int pagina)
-            => throw new NotImplementedException();
+        public IEnumerable<Processo> Obter()
+            => dbConnection.Query<Processo>("SELECT Identificador, Nome FROM Processos");
 
         public Processo Obter(Guid id)
             => throw new NotImplementedException();
