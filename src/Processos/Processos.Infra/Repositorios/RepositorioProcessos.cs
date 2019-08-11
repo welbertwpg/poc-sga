@@ -4,16 +4,12 @@ using Processos.Dominio.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
 namespace Processos.Infra.Repositorios
 {
     public class RepositorioProcessos : RepositorioSql, IRepositorioProcessos
     {
         public RepositorioProcessos(IDbConnection dbConnection) : base(dbConnection) { }
-
-        public void Deletar(Guid id)
-            => dbConnection.Execute("DELETE Processos WHERE Identificador = @id", new { id });
 
         public void InserirOuAtualizar(Processo processo)
         {
@@ -29,46 +25,70 @@ namespace Processos.Infra.Repositorios
             dbConnection.Open();
             using (var transacao = dbConnection.BeginTransaction())
             {
-                dbConnection.Execute("INSERT INTO Processos (Identificador, Nome) " +
-                    "VALUES (@Identificador, @Nome)", new
-                    {
-                        processo.Identificador,
-                        processo.Nome
-                    }, transacao);
-
-                foreach (var etapa in processo.Etapas)
-                {
-                    dbConnection.Execute("INSERT INTO Etapas (Identificador, IdentificadorProcesso, Nome, Tipo, X, Y)" +
-                        "VALUES (@Identificador, @IdentificadorProcesso, @Nome, @Tipo, @X, @Y)", new
-                        {
-                            etapa.Identificador,
-                            IdentificadorProcesso = processo.Identificador,
-                            etapa.Nome,
-                            etapa.Tipo,
-                            etapa.X,
-                            etapa.Y
-                        }, transacao);
-                }
-
-                foreach (var etapa in processo.Etapas)
-                    foreach (var saida in etapa.EtapasSaida)
-                    {
-                        dbConnection.Execute("INSERT INTO EtapaReferencia (IdentificadorEtapaEntrada, IdentificadorEtapaSaida)"
-                            + "VALUES (@Identificador, @saida)", new { etapa.Identificador, saida }, transacao);
-                    }
-
+                Inserir(processo, transacao);
                 transacao.Commit();
             }
         }
 
+        private void Inserir(Processo processo, IDbTransaction transacao)
+        {
+            dbConnection.Execute("INSERT INTO Processos (Identificador, Nome) " +
+                "VALUES (@Identificador, @Nome)", new
+                {
+                    processo.Identificador,
+                    processo.Nome
+                }, transacao);
+
+            foreach (var etapa in processo.Etapas)
+            {
+                dbConnection.Execute("INSERT INTO Etapas (Identificador, IdentificadorProcesso, Nome, Tipo, X, Y)" +
+                    "VALUES (@Identificador, @IdentificadorProcesso, @Nome, @Tipo, @X, @Y)", new
+                    {
+                        etapa.Identificador,
+                        IdentificadorProcesso = processo.Identificador,
+                        etapa.Nome,
+                        etapa.Tipo,
+                        etapa.X,
+                        etapa.Y
+                    }, transacao);
+            }
+
+            foreach (var etapa in processo.Etapas)
+                foreach (var saida in etapa.EtapasSaida)
+                {
+                    dbConnection.Execute("INSERT INTO EtapaReferencia (IdentificadorEtapaEntrada, IdentificadorEtapaSaida)"
+                        + "VALUES (@Identificador, @saida)", new { etapa.Identificador, saida }, transacao);
+                }
+        }
+
         private void Atualizar(Processo processo)
         {
+            dbConnection.Open();
+            using (var transacao = dbConnection.BeginTransaction())
+            {
+                Deletar(processo.Identificador, transacao);
+                Inserir(processo, transacao);
+                transacao.Commit();
+            }
         }
 
         public IEnumerable<Processo> Obter(int quantidade, int pagina)
-            => dbConnection.Query<Processo>("SELECT ");
+            => throw new NotImplementedException();
 
         public Processo Obter(Guid id)
-            => dbConnection.QuerySingleOrDefault<Processo>("SELECT ", new { id });
+            => throw new NotImplementedException();
+
+        public void Deletar(Guid id)
+        {
+            dbConnection.Open();
+            using (var transacao = dbConnection.BeginTransaction())
+            {
+                Deletar(id, transacao);
+                transacao.Commit();
+            }
+        }
+
+        private void Deletar(Guid id, IDbTransaction transacao)
+            => dbConnection.Execute("DELETE Processos WHERE Identificador = @id", new { id }, transacao);
     }
 }
