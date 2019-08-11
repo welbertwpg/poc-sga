@@ -10,6 +10,6 @@ namespace Processos.Dominio.Entidades
 
         public Guid Identificador { get; set; }
         public string Nome { get; set; }
-        public IEnumerable<Etapa> Etapas { get; set; }
+        public ICollection<Etapa> Etapas { get; set; }
     }
 }

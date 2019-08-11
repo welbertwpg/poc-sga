@@ -1,17 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
+using System.Data;
 
 namespace Processos.Infra.Repositorios
 {
     public abstract class RepositorioSql : IDisposable
     {
-        protected readonly DbContext dbContext;
-        public RepositorioSql(DbContext dbContext)
-            => this.dbContext = dbContext;
+        protected readonly IDbConnection dbConnection;
+
+        public RepositorioSql(IDbConnection dbConnection)
+            => this.dbConnection = dbConnection;
 
         public void Dispose()
         {
-            dbContext.Dispose();
+            dbConnection.Dispose();
             GC.SuppressFinalize(this);
         }
     }

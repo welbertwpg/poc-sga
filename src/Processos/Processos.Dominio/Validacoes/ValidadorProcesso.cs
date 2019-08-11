@@ -32,7 +32,7 @@ namespace Processos.Dominio.Validacoes
                 .Must(etapas =>
                 {
                     foreach (var etapa in etapas.Where(e => e.Tipo != TipoEtapa.Inicio))
-                        if (!etapas.Any(e => e.EtapasSaida.Any(es => es.Identificador == etapa.Identificador)))
+                        if (!etapas.Any(e => e.EtapasSaida.Contains(etapa.Identificador)))
                             return false;
 
                     return true;

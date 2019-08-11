@@ -8,16 +8,16 @@ namespace Processos.Dominio.Validacoes
     {
         public ValidadorEtapa()
         {
-            RuleFor(p => p.Identificador)
+            RuleFor(e => e.Identificador)
                 .NotEmpty()
                 .WithMessage("'Identificador' obrigatório");
 
-            RuleFor(p => p.Nome)
+            RuleFor(e => e.Nome)
                 .NotEmpty()
                 .WithMessage("'Nome' obrigatório");
 
-            RuleFor(p => p.Tipo)
-                .NotEmpty()
+            RuleFor(e => e.Tipo)
+                .NotNull()
                 .WithMessage("'Tipo' obrigatório");
 
             RuleFor(e => e.EtapasSaida)
@@ -41,7 +41,7 @@ namespace Processos.Dominio.Validacoes
                 .WithMessage("As etapas de decisão devem apontar para ao menos duas outras etapas");
 
             RuleFor(e => e)
-                .Must(e => !e.EtapasSaida.Any(es => es.Identificador == e.Identificador))
+                .Must(e => !e.EtapasSaida.Contains(e.Identificador))
                 .WithMessage("Uma etapa não pode se auto referenciar");
         }
     }

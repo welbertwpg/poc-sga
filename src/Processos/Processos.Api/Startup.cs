@@ -2,14 +2,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Processos.Api.Filtros;
 using Processos.Dominio.Entidades;
 using Processos.Dominio.Interfaces;
 using Processos.Dominio.Validacoes;
-using Processos.Infra.Contexto;
 using Processos.Infra.Repositorios;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Processos.Api
 {
@@ -25,9 +26,7 @@ namespace Processos.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DbContext, ContextoProcessos>(options => 
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), 
-                o => o.MigrationsAssembly("Processos.Infra")));
+            services.AddScoped<IDbConnection>(provider => new SqlConnection(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IRepositorioProcessos, RepositorioProcessos>();
             services.AddScoped<IRepositorioProblemas, RepositorioProblemas>();
@@ -38,7 +37,8 @@ namespace Processos.Api
             services.AddSingleton<IValidator<Problema>, ValidadorProblema>();
             services.AddSingleton<IValidator<Parada>, ValidadorParada>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options => options.Filters.Add(new FiltroExcecaoValidacao()))
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
