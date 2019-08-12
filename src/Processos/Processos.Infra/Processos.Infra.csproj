@@ -11,7 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Processos.Dominio\Processos.Dominio.csproj" />
     <Reference Include="Slapper.AutoMapper">
-      <HintPath>Bibliotecas\Slapper.AutoMapper.dll</HintPath>
+      <HintPath>Slapper\Slapper.AutoMapper.dll</HintPath>
     </Reference>
   </ItemGroup>
 
