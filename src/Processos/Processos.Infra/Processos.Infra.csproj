@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="1.60.6" />
+    <PackageReference Include="Slapper.AutoMapper" Version="2.0.0.9-beta" />
   </ItemGroup>
 
   <ItemGroup>

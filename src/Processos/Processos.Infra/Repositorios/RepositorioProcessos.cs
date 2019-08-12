@@ -1,9 +1,11 @@
 ﻿using Dapper;
 using Processos.Dominio.Entidades;
 using Processos.Dominio.Interfaces;
+using Slapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace Processos.Infra.Repositorios
 {
@@ -76,7 +78,28 @@ namespace Processos.Infra.Repositorios
             => dbConnection.Query<Processo>("SELECT Identificador, Nome FROM Processos");
 
         public Processo Obter(Guid id)
-            => throw new NotImplementedException();
+        {
+            var resultado = dbConnection.Query<dynamic>(@"
+                SELECT
+                    P.Identificador,
+                    P.Nome,
+                    E.Identificador Etapas_Identificador,
+                    E.Tipo Etapas_Tipo,
+                    E.Nome Etapas_Nome,
+                    E.X Etapas_X,
+                    E.Y Etapas_Y,
+                    ER.IdentificadorEtapaSaida Etapas_EtapasSaida_$
+                FROM Processos P
+                JOIN Etapas E ON P.Identificador = E.IdentificadorProcesso
+                LEFT JOIN EtapaReferencia ER ON E.Identificador = ER.IdentificadorEtapaEntrada
+                WHERE P.Identificador = @id
+                ORDER BY E.Tipo", new { id });
+
+            AutoMapper.Configuration.AddIdentifier(typeof(Processo), "Identificador");
+            AutoMapper.Configuration.AddIdentifier(typeof(Etapa), "Identificador");
+
+            return AutoMapper.MapDynamic<Processo>(resultado, false).FirstOrDefault();
+        }
 
         public void Deletar(Guid id)
         {
