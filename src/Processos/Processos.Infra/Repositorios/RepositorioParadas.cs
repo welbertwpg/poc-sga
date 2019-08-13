@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using Dapper;
 using Processos.Dominio.Entidades;
 using Processos.Dominio.Interfaces;
 
@@ -9,8 +10,7 @@ namespace Processos.Infra.Repositorios
         public RepositorioParadas(IDbConnection dbConnection) : base(dbConnection) { }
 
         public void Inserir(Parada parada)
-        {
-            throw new System.NotImplementedException();
-        }
+            => dbConnection.Execute(@"INSERT INTO Paradas(Identificador, Data, Turno, Descricao, IdentificadorEtapa)
+                                        VALUES (@Identificador, @Data, @Turno, @Descricao, @IdentificadorEtapa)", parada);
     }
 }
