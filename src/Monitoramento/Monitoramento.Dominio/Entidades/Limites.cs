@@ -1,6 +1,6 @@
 ﻿namespace Monitoramento.Dominio.Entidades
 {
-    public class NormasAmbientais
+    public class Limites
     {
         public double NivelMaximoPermitido { get; set; }
 

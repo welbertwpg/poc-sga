@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Options;
 using Monitoramento.Api.Interfaces;
 using Monitoramento.Dominio.Entidades;
 using Monitoramento.Dominio.Interfaces;
@@ -8,21 +9,24 @@ namespace Monitoramento.Api.Hubs
 {
     public class SensoresHub : Hub<IClienteSensoresHub>
     {
-        private readonly IRepositorioNormasAmbientais repositorioNormasAmbientais;
+        private readonly IServicoDefesaCivil servicoDefesaCivil;
         private readonly IConexaoFila conexaoFila;
+        private readonly Limites limites;
 
-        public SensoresHub(IRepositorioNormasAmbientais repositorioNormasAmbientais, IConexaoFila conexaoFila)
+        public SensoresHub(IServicoDefesaCivil servicoDefesaCivil, IConexaoFila conexaoFila, IOptions<Limites> limites)
         {
-            this.repositorioNormasAmbientais = repositorioNormasAmbientais;
+            this.servicoDefesaCivil = servicoDefesaCivil;
             this.conexaoFila = conexaoFila;
+            this.limites = limites.Value;
         }
 
         public void AtualizarResultadosSensores(ResultadoSensores resultadoSensores)
         {
-            var normas = repositorioNormasAmbientais.Obter();
-
-            if (resultadoSensores.Piezometro.Nivel >= normas.NivelMaximoPermitido || resultadoSensores.Piezometro.Pressao >= normas.PressaoMaximaPermitida)
+            if (resultadoSensores.Validar(limites))
+            {
                 conexaoFila.EnviarMensagem(new Alerta { Criticidade = CriticidadeAlerta.Media, Mensagem = "Foi detectada uma anormalidade nos sensores da barragem." });
+                servicoDefesaCivil.SolicitarReconhecimentoDesastre(resultadoSensores);
+            }
 
             Clients.All.AtualizarResultadosSensores(resultadoSensores);
         }

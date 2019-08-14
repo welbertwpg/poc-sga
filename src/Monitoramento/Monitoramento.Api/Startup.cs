@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Monitoramento.Api.Hubs;
+using Monitoramento.Dominio.Entidades;
 using Monitoramento.Dominio.Interfaces;
 using Monitoramento.Infra.AMQP;
 using Monitoramento.Infra.Servicos;
@@ -22,9 +23,11 @@ namespace Monitoramento.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<Limites>(options => Configuration.GetSection("Limites").Bind(options));
+
             services.AddSingleton<IConexaoFila>(provider => new ConexaoFila(Configuration["RabbitMQ:Host"], Configuration["RabbitMQ:Fila"]));
             services.AddSingleton<ISensores, MockSensores>();
-            services.AddSingleton<IRepositorioNormasAmbientais, MockRepositorioNormasAmbientais>();
+            services.AddSingleton<IServicoDefesaCivil, MockServicoDefesaCivil>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSignalR();
