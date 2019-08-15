@@ -6,6 +6,6 @@
         public ResultadoSensorDeslocamento Deslocamento { get; set; }
 
         public bool Validar(Limites limites)
-            => Piezometro.Nivel <= limites.NivelMaximoPermitido & Piezometro.Pressao <= limites.PressaoMaximaPermitida;
+            => Piezometro.Nivel <= limites.NivelMaximoPermitido && Piezometro.Pressao <= limites.PressaoMaximaPermitida;
     }
 }

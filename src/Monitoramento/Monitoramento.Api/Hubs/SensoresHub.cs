@@ -22,7 +22,7 @@ namespace Monitoramento.Api.Hubs
 
         public void AtualizarResultadosSensores(ResultadoSensores resultadoSensores)
         {
-            if (resultadoSensores.Validar(limites))
+            if (!resultadoSensores.Validar(limites))
             {
                 conexaoFila.EnviarMensagem(new Alerta { Criticidade = CriticidadeAlerta.Media, Mensagem = "Foi detectada uma anormalidade nos sensores da barragem." });
                 servicoDefesaCivil.SolicitarReconhecimentoDesastre(resultadoSensores);
