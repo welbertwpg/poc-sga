@@ -8,12 +8,10 @@ namespace Ativos.Testes
 {
     public class ValidacaoManutencao
     {
-        private readonly IValidator<Manutencao> validadorManutencao;
-        public ValidacaoManutencao()
-            => validadorManutencao = new ValidadorManutencao();
+        private readonly IValidator<Manutencao> validadorManutencao = new ValidadorManutencao();
 
         [Fact]
-        public void Validacao_CamposObrigatoriosPreenchidos_Valido()
+        public void ValidacaoCronograma_CamposObrigatoriosPreenchidos_Valido()
         {
             var manutencao = new Manutencao
             {
@@ -26,7 +24,7 @@ namespace Ativos.Testes
         }
 
         [Fact]
-        public void Validacao_CamposObrigatoriosNaoPreenchidos_Invalido()
+        public void ValidacaoCronograma_CamposObrigatoriosNaoPreenchidos_Invalido()
         {
             var manutencao = new Manutencao { };
             var resultadoValidacao = validadorManutencao.Validate(manutencao);
@@ -35,7 +33,7 @@ namespace Ativos.Testes
         }
 
         [Fact]
-        public void Validacao_DataHoraAntesDataAtual_Invalido()
+        public void ValidacaoCronograma_DataHoraAntesDataAtual_Invalido()
         {
             var manutencao = new Manutencao
             {

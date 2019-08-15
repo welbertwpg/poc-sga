@@ -8,13 +8,10 @@ namespace Ativos.Testes
 {
     public class ValidacaoAtivos
     {
-        private readonly IValidator<Ativo> validadorAtivo;
-
-        public ValidacaoAtivos()
-            => validadorAtivo = new ValidadorAtivo();
+        private readonly IValidator<Ativo> validadorAtivo = new ValidadorAtivo();
 
         [Fact]
-        public void Validacao_CamposObrigatoriosPreenchidos_Valido()
+        public void ValidacaoAtivos_CamposObrigatoriosPreenchidos_Valido()
         {
             var ativo = new Ativo
             {
@@ -30,7 +27,7 @@ namespace Ativos.Testes
         }
 
         [Fact]
-        public void Validacao_CamposObrigatoriosNaoPreenchidos_Invalido()
+        public void ValidacaoAtivos_CamposObrigatoriosNaoPreenchidos_Invalido()
         {
             var ativo = new Ativo { };
             var resultadoValidacao = validadorAtivo.Validate(ativo);
@@ -39,7 +36,7 @@ namespace Ativos.Testes
         }
 
         [Fact]
-        public void Validacao_MediaHorasUsoDiariamenteNegativo_Invalido()
+        public void ValidacaoAtivos_MediaHorasUsoDiariamenteNegativo_Invalido()
         {
             var ativo = new Ativo
             {

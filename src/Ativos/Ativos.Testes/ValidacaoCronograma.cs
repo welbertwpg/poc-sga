@@ -7,13 +7,10 @@ namespace Ativos.Testes
 {
     public class ValidacaoCronograma
     {
-        private readonly IValidator<CronogramaManutencao> validadorCronograma;
-
-        public ValidacaoCronograma()
-            => validadorCronograma = new ValidadorCronograma();
+        private readonly IValidator<CronogramaManutencao> validadorCronograma = new ValidadorCronograma();
 
         [Fact]
-        public void Validacao_CamposObrigatoriosPreenchidos_Valido()
+        public void ValidacaoCronograma_CamposObrigatoriosPreenchidos_Valido()
         {
             var cronograma = new CronogramaManutencao
             {
@@ -26,7 +23,7 @@ namespace Ativos.Testes
         }
 
         [Fact]
-        public void Validacao_CamposObrigatoriosNaoPreenchidos_Invalido()
+        public void ValidacaoCronograma_CamposObrigatoriosNaoPreenchidos_Invalido()
         {
             var cronograma = new CronogramaManutencao { };
             var resultadoValidacao = validadorCronograma.Validate(cronograma);
@@ -35,7 +32,7 @@ namespace Ativos.Testes
         }
 
         [Fact]
-        public void Validacao_IntervaloHorasUsoFrequenciaValida_Valido()
+        public void ValidacaoCronograma_IntervaloHorasUsoFrequenciaValida_Valido()
         {
             var cronograma = new CronogramaManutencao
             {
@@ -49,7 +46,7 @@ namespace Ativos.Testes
         }
 
         [Fact]
-        public void Validacao_IntervaloHorasUsoFrequenciaInvalida_Invalido()
+        public void ValidacaoCronograma_IntervaloHorasUsoFrequenciaInvalida_Invalido()
         {
             var cronograma = new CronogramaManutencao
             {
@@ -64,7 +61,7 @@ namespace Ativos.Testes
         }
 
         [Fact]
-        public void Validacao_IntervaloHorasUsoNegativoFrequenciaValida_Invalido()
+        public void ValidacaoCronograma_IntervaloHorasUsoNegativoFrequenciaValida_Invalido()
         {
             var cronograma = new CronogramaManutencao
             {

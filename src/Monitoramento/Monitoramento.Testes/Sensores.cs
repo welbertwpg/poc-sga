@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Monitoramento.Testes
 {
-    public class UnitTest1
+    public class Sensores
     {
         private readonly Limites limites = new Limites
         {
