@@ -26,7 +26,7 @@ namespace Ativos.Testes
         }
 
         [Fact]
-        public void Validacao_CamposObrigatoriosNaoPreenchidos_InvalidoComErros()
+        public void Validacao_CamposObrigatoriosNaoPreenchidos_Invalido()
         {
             var cronograma = new CronogramaManutencao { };
             var resultadoValidacao = validadorCronograma.Validate(cronograma);
@@ -64,7 +64,7 @@ namespace Ativos.Testes
         }
 
         [Fact]
-        public void Validacao_IntervaloHorasUsoNegativaFrequenciaValida_Invalido()
+        public void Validacao_IntervaloHorasUsoNegativoFrequenciaValida_Invalido()
         {
             var cronograma = new CronogramaManutencao
             {

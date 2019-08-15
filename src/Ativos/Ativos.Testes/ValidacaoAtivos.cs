@@ -30,7 +30,7 @@ namespace Ativos.Testes
         }
 
         [Fact]
-        public void Validacao_CamposObrigatoriosNaoPreenchidos_InvalidoComErros()
+        public void Validacao_CamposObrigatoriosNaoPreenchidos_Invalido()
         {
             var ativo = new Ativo { };
             var resultadoValidacao = validadorAtivo.Validate(ativo);
@@ -39,7 +39,7 @@ namespace Ativos.Testes
         }
 
         [Fact]
-        public void Validacao_MediaHorasUsoDiariamenteNegativo_InvalidoComErro()
+        public void Validacao_MediaHorasUsoDiariamenteNegativo_Invalido()
         {
             var ativo = new Ativo
             {
