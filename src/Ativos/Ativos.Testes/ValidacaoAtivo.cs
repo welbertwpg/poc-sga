@@ -6,12 +6,12 @@ using Xunit;
 
 namespace Ativos.Testes
 {
-    public class ValidacaoAtivos
+    public class ValidacaoAtivo
     {
         private readonly IValidator<Ativo> validadorAtivo = new ValidadorAtivo();
 
         [Fact]
-        public void ValidacaoAtivos_CamposObrigatoriosPreenchidos_Valido()
+        public void ValidacaoAtivo_CamposObrigatoriosPreenchidos_Valido()
         {
             var ativo = new Ativo
             {
@@ -27,7 +27,7 @@ namespace Ativos.Testes
         }
 
         [Fact]
-        public void ValidacaoAtivos_CamposObrigatoriosNaoPreenchidos_Invalido()
+        public void ValidacaoAtivo_CamposObrigatoriosNaoPreenchidos_Invalido()
         {
             var ativo = new Ativo { };
             var resultadoValidacao = validadorAtivo.Validate(ativo);
@@ -36,7 +36,7 @@ namespace Ativos.Testes
         }
 
         [Fact]
-        public void ValidacaoAtivos_MediaHorasUsoDiariamenteNegativo_Invalido()
+        public void ValidacaoAtivo_MediaHorasUsoDiariamenteNegativo_Invalido()
         {
             var ativo = new Ativo
             {
