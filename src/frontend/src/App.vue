@@ -5,7 +5,7 @@
         <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible">
           <md-icon>menu</md-icon>
         </md-button>
-        <span class="md-title">{{title}}</span>
+        <span class="md-title">Sistema de Gestão Ambiental</span>
       </md-app-toolbar>
 
       <md-app-drawer :md-active.sync="menuVisible" md-persistent="mini">
@@ -59,12 +59,6 @@
 <script>
 export default {
   name: "app",
-  props: {
-    title: {
-      type: String,
-      default: "SGA"
-    }
-  },
   data: () => ({
     menuVisible: false
   }),
