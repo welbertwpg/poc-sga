@@ -29,6 +29,11 @@
         <md-table-cell md-label="Tipo" md-sort-by="tipo">{{ item.tipo }}</md-table-cell>
         <md-table-cell md-label="Data" md-sort-by="dataAquisicao">{{ item.dataAquisicao }}</md-table-cell>
         <md-table-cell md-label="Observações" md-sort-by="observacoes">{{ item.observacoes }}</md-table-cell>
+        <md-table-cell md-label="Ações">
+          <md-button @click="excluir(item)">
+            <md-icon>delete</md-icon>
+          </md-button>
+        </md-table-cell>
       </md-table-row>
     </md-table>
     <dialog-criar-ativo v-model="exibirCriarAtivo" />
@@ -63,6 +68,11 @@ export default {
     async obterAtivos() {
       const resposta = await repositorioAtivos.obter();
       if (resposta.status == 200) return resposta.data;
+    },
+    async excluir(ativo) {
+      await repositorioAtivos.excluir(ativo.identificador);
+      const index = this.ativos.indexOf(ativo);
+      this.ativos.splice(index, 1);
     }
   },
   async created() {
