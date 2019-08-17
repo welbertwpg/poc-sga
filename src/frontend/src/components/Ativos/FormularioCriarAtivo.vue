@@ -109,7 +109,7 @@ import { required, between, minLength } from "vuelidate/lib/validators";
 import repositorioAtivos from "../../services/Ativos/repositorioAtivos";
 
 export default {
-  name: "FormValidation",
+  name: "formularioCriarAtivo",
   mixins: [validationMixin],
   props: {
     aposSalvar: {
