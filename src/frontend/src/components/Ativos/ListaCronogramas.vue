@@ -8,7 +8,7 @@
 
         <div class="md-toolbar-section-end">
           <md-field>
-            <md-input placeholder="Pesquisar por nome..." v-model="filtro" @input="filtrarPorNome" />
+            <md-input placeholder="Pesquisar por identificador..." v-model="filtro" @input="filtrarPorIdentificador" />
           </md-field>
           <md-button class="md-primary md-raised" @click="novoCronograma">
             <md-icon>add</md-icon>
@@ -31,6 +31,11 @@
           md-label="Intervalo"
           md-sort-by="intervaloHorasUso"
         >{{ item.intervaloHorasUso }}</md-table-cell>
+        <md-table-cell md-label="Ações">
+          <md-button @click="excluir(item)">
+            <md-icon>delete</md-icon>
+          </md-button>
+        </md-table-cell>
       </md-table-row>
     </md-table>
     <dialog-criar-cronograma v-model="exibirCriarCronograma" />
@@ -55,16 +60,21 @@ export default {
     novoCronograma() {
       this.exibirCriarCronograma = true;
     },
-    filtrarPorNome() {
+    filtrarPorIdentificador() {
       if (this.filtro) {
         this.resultadoPesquisa = this.cronogramas.filter(item =>
-          toLower(item.nome).includes(toLower(this.filtro))
+          toLower(item.identificador).includes(toLower(this.filtro))
         );
       } else this.resultadoPesquisa = this.cronogramas;
     },
     async obterCronogramas() {
       const resposta = await repositorioCronogramas.obter();
       if (resposta.status == 200) return resposta.data;
+    },
+    async excluir(cronograma) {
+      await repositorioCronogramas.excluir(cronograma.identificador);
+      const index = this.cronogramas.indexOf(cronograma);
+      this.cronogramas.splice(index, 1);
     }
   },
   async created() {
