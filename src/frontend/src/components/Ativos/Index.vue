@@ -1,16 +1,19 @@
 <template>
   <div>
-    <lista-ativos class="tabela" />
+    <lista-ativos />
+    <lista-cronogramas />
   </div>
 </template>
 
 <script>
-import ListaAtivos from "./ListaAtivos";
+import ListaAtivos from './ListaAtivos';
+import ListaCronogramas from './ListaCronogramas' 
 
 export default {
-  name: "ativos",
+  name: 'ativos',
   components: {
-    ListaAtivos
+    ListaAtivos,
+    ListaCronogramas
   }
 };
 </script>

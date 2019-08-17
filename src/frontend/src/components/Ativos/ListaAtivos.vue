@@ -9,7 +9,9 @@
         <md-field>
           <md-input placeholder="Pesquisar por nome..." v-model="filtro" @input="filtrarPorNome" />
         </md-field>
-        <md-button class="botao md-primary md-raised" @click="novoAtivo">Criar novo ativo</md-button>
+        <md-button class="md-primary md-raised" @click="novoAtivo">
+          <md-icon>add</md-icon>
+        </md-button>
       </div>
     </md-table-toolbar>
 
@@ -37,7 +39,7 @@ const toLower = text => text.toString().toLowerCase();
 export default {
   name: "listaAtivos",
   data: () => ({
-    filtro: null,
+    filtro: '',
     resultadoPesquisa: [],
     ativos: []
   }),
@@ -67,9 +69,5 @@ export default {
 <style lang="scss" scoped>
 .md-field {
   max-width: 500px;
-}
-
-.botao {
-  min-width: 150px;
 }
 </style>
