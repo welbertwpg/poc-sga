@@ -26,7 +26,7 @@ namespace Ativos.Dominio.Entidades
         public IList<Manutencao> Manutencoes { get; set; }
 
         public DateTime ObterDataUltimaManutencao()
-            => Manutencoes.FirstOrDefault(m => m.Realizada)?.DataHora ?? DataAquisicao;
+            => Manutencoes?.Max(m => m.DataHoraRealizada) ?? DataAquisicao;
 
         public int ObterHorasUso()
         {

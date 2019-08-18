@@ -63,7 +63,7 @@ namespace Ativos.Api.Controllers
 
         [HttpPut("{id}/manutencoes/{idManutencao}")]
         public void AtualizarManutencao([FromRoute]string id, [FromRoute]string idManutencao)
-            => repositorioManutencoes.AtualizarStatus(ObjectId.Parse(id), ObjectId.Parse(idManutencao), true);
+            => repositorioManutencoes.MarcarComoRealizada(ObjectId.Parse(id), ObjectId.Parse(idManutencao));
 
         [HttpDelete("{id}")]
         public void Deletar([FromRoute]string id)

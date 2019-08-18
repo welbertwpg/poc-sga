@@ -7,6 +7,6 @@ namespace Ativos.Dominio.Interfaces
     {
         void Inserir(ObjectId id, Manutencao manutencao);
 
-        void AtualizarStatus(ObjectId id, ObjectId idManutencao, bool status);
+        void MarcarComoRealizada(ObjectId id, ObjectId idManutencao);
     }
 }

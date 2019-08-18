@@ -15,6 +15,7 @@ namespace Ativos.Dominio.Entidades
         [BsonId]
         public ObjectId Identificador { get; set; }
         public DateTime DataHora { get; set; }
+        public DateTime? DataHoraRealizada { get; set; }
         public TipoManutencao Tipo { get; set; }
         public bool Realizada { get; set; }
     }
