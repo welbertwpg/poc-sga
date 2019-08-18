@@ -24,6 +24,10 @@
         <md-table-cell md-label="Data">{{ item.dataAquisicao }}</md-table-cell>
         <md-table-cell md-label="Observações">{{ item.observacoes }}</md-table-cell>
         <md-table-cell md-label="Ações">
+          <md-button title="Visualizar manutenções" @click="abrirDialogManutencoes(item)">
+            <md-icon>search</md-icon>
+            <md-icon>build</md-icon>
+          </md-button>
           <md-button title="Criar manutenção" @click="abrirDialogCriarManutencao(item)">
             <md-icon>add</md-icon>
             <md-icon>build</md-icon>
@@ -34,6 +38,9 @@
         </md-table-cell>
       </md-table-row>
     </md-table>
+    <dialog-sga :title="'Manutenções'" v-model="exibirManutencoes">
+      <lista-manutencoes :ativo="ativoManutencao" />
+    </dialog-sga>
     <dialog-sga :title="'Criar manutenção'" v-model="exibirCriarManutencao">
       <formulario-criar-manutencao :ativo="ativoManutencao" :aposSalvar="fecharDialogCriarManutencao" />
     </dialog-sga>
@@ -47,6 +54,7 @@
 import DialogSga from "./DialogSga";
 import FormularioCriarAtivo from "./FormularioCriarAtivo";
 import FormularioCriarManutencao from "./FormularioCriarManutencao";
+import ListaManutencoes from "./ListaManutencoes"
 import { mapGetters, mapActions } from "vuex";
 
 export default {
@@ -55,6 +63,7 @@ export default {
     filtro: "",
     exibirCriarAtivo: false,
     exibirCriarManutencao: false,
+    exibirManutencoes: false,
     ativoManutencao: null
   }),
   computed: {
@@ -67,11 +76,16 @@ export default {
     fecharDialogCriar() {
       this.exibirCriarAtivo = false;
     },
+    abrirDialogManutencoes(ativo) {
+      this.ativoManutencao = ativo;
+      this.exibirManutencoes = true;
+    },
     abrirDialogCriarManutencao(ativo) {
       this.ativoManutencao = ativo;
       this.exibirCriarManutencao = true;
     },
     fecharDialogCriarManutencao() {
+      this.ativoManutencao = null;
       this.exibirCriarManutencao = false;
     },
     ...mapActions("Ativos", ["atualizarAtivos", "removerAtivo"])
@@ -82,7 +96,8 @@ export default {
   components: {
     DialogSga,
     FormularioCriarAtivo,
-    FormularioCriarManutencao
+    FormularioCriarManutencao,
+    ListaManutencoes
   }
 };
 </script>

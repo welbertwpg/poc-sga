@@ -34,27 +34,39 @@ const obterDescricaoTipoAtivo = (frequencia) => {
     }
 }
 
-const ativos = (state) => state.ativos.map((ativo) => {
-    return {
-        identificador: ativo.identificador,
-        nome: ativo.nome,
-        patrimonio: ativo.patrimonio,
-        tipo: obterDescricaoTipoAtivo(ativo.tipo),
-        dataAquisicao: Moment(String(ativo.dataAquisicao)).format("DD/MM/YYYY"),
-        observacoes: ativo.observacoes,
-        mediaHorasUsoDiariamente: ativo.mediaHorasUsoDiariamente,
-        manutencoes: ativo.manutencoes
+const obterDescricaoTipoManutencao = (tipo) => {
+    switch (tipo) {
+        case 1:
+        case "1":
+            return "Preventiva";
+        case 2:
+        case "2":
+            return "Corretiva";
     }
-})
+}
 
-const cronogramas = (state) => state.cronogramas.map((cronograma) => {
-    return {
-        identificador: cronograma.identificador,
-        frequencia: obterDescricaoFrequencia(cronograma.frequencia),
-        tipoAtivo: obterDescricaoTipoAtivo(cronograma.tipoAtivo),
-        intervaloHorasUso: cronograma.intervaloHorasUso
-    }
-})
+const ativos = (state) => state.ativos.map((ativo) => ({
+    identificador: ativo.identificador,
+    nome: ativo.nome,
+    patrimonio: ativo.patrimonio,
+    tipo: obterDescricaoTipoAtivo(ativo.tipo),
+    dataAquisicao: Moment(String(ativo.dataAquisicao)).format("DD/MM/YYYY"),
+    observacoes: ativo.observacoes,
+    mediaHorasUsoDiariamente: ativo.mediaHorasUsoDiariamente,
+    manutencoes: ativo.manutencoes.map((manutencao) => ({
+        identificador: manutencao.identificador,
+        dataHora: Moment(String(manutencao.dataHora)).format("DD/MM/YYYY"),
+        tipo: obterDescricaoTipoManutencao(manutencao.tipo),
+        realizada: manutencao.realizada
+    }))
+}))
+
+const cronogramas = (state) => state.cronogramas.map((cronograma) => ({
+    identificador: cronograma.identificador,
+    frequencia: obterDescricaoFrequencia(cronograma.frequencia),
+    tipoAtivo: obterDescricaoTipoAtivo(cronograma.tipoAtivo),
+    intervaloHorasUso: cronograma.intervaloHorasUso
+}))
 
 export default {
     ativos,
