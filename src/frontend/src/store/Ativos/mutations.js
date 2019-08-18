@@ -11,6 +11,14 @@ const adicionarManutencao = (state, { identificador, manutencao }) => {
     ativo.manutencoes.push(manutencao)
 }
 
+const realizarManutencao = (state, { identificadorAtivo, identificadorManutencao }) => {
+    const ativo = state.ativos.find((ativo) => ativo.identificador == identificadorAtivo);
+    ativo.manutencoes.forEach((manutencao) => {
+        if (manutencao.identificador == identificadorManutencao)
+            manutencao.realizada = true;
+    });
+}
+
 const removerAtivo = (state, ativo) => {
     const index = state.ativos.findIndex((a) => a.identificador == ativo.identificador)
     state.ativos.splice(index, 1)
@@ -34,6 +42,7 @@ export default {
     adicionarAtivo,
     removerAtivo,
     adicionarManutencao,
+    realizarManutencao,
     atualizarCronogramas,
     adicionarCronograma,
     removerCronograma

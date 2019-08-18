@@ -21,6 +21,12 @@ const adicionarManutencao = async ({ commit }, { identificador, manutencao }) =>
     }
 }
 
+const realizarManutencao = async ({ commit }, { identificadorAtivo, identificadorManutencao }) => {
+    const resposta = await repositorioAtivos.realizarManutencao(identificadorAtivo, identificadorManutencao);
+    if (resposta.status == 200)
+        commit('realizarManutencao', { identificadorAtivo, identificadorManutencao });
+}
+
 const removerAtivo = async ({ commit }, ativo) => {
     const resposta = await repositorioAtivos.excluir(ativo.identificador);
     if (resposta.status == 200) {
@@ -54,6 +60,7 @@ export default {
     adicionarAtivo,
     removerAtivo,
     adicionarManutencao,
+    realizarManutencao,
     atualizarCronogramas,
     adicionarCronograma,
     removerCronograma

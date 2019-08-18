@@ -1,7 +1,7 @@
 <template>
   <div>
     <md-list>
-      <md-list-item  v-if="!ativo.manutencoes.length">
+      <md-list-item v-if="!ativo.manutencoes.length">
         <span>Nenhuma manutenção para este ativo</span>
       </md-list-item>
 
@@ -13,7 +13,10 @@
 
         <md-icon v-if="manutencao.realizada" class="md-primary">check</md-icon>
 
-        <md-button class="md-icon-button md-list-action" v-if="!manutencao.realizada">
+        <md-button
+          v-if="!manutencao.realizada"
+          @click="realizarManutencao({identificadorAtivo: ativo.identificador, identificadorManutencao: manutencao.identificador})"
+          class="md-icon-button md-list-action">
           <md-icon>check</md-icon>
         </md-button>
       </md-list-item>
@@ -22,6 +25,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "listaManutencoes",
   props: {
@@ -29,6 +34,9 @@ export default {
       type: Object,
       required: true
     }
+  },
+  methods: {
+    ...mapActions("Ativos", ["realizarManutencao"])
   }
 };
 </script>
