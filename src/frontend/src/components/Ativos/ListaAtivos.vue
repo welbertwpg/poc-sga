@@ -24,7 +24,10 @@
         <md-table-cell md-label="Data">{{ item.dataAquisicao }}</md-table-cell>
         <md-table-cell md-label="Observações">{{ item.observacoes }}</md-table-cell>
         <md-table-cell md-label="Ações">
-          <md-button @click="removerAtivo(item)">
+          <md-button title="Criar manutenção">
+            <md-icon>build</md-icon>
+          </md-button>
+          <md-button title="Excluir" @click="removerAtivo(item)">
             <md-icon>delete</md-icon>
           </md-button>
         </md-table-cell>

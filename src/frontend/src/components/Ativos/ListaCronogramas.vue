@@ -23,7 +23,7 @@
         <md-table-cell md-label="Tipo">{{ item.tipoAtivo }}</md-table-cell>
         <md-table-cell md-label="Intervalo">{{ item.intervaloHorasUso }}</md-table-cell>
         <md-table-cell md-label="Ações">
-          <md-button @click="removerCronograma(item)">
+          <md-button title="Excluir" @click="removerCronograma(item)">
             <md-icon>delete</md-icon>
           </md-button>
         </md-table-cell>

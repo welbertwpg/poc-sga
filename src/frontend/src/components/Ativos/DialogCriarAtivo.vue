@@ -1,6 +1,16 @@
 <template>
   <md-dialog :md-close-on-esc="false" :md-click-outside-to-close="false" @md-clicked-outside="fechar" :md-active.sync="value">
-    <md-dialog-title>Criar ativo</md-dialog-title>
+    <md-toolbar md-elevation="0">
+      <div class="md-toolbar-section-start">
+        <h1 class="md-title">Criar ativo</h1>
+      </div>
+
+      <div class="md-toolbar-section-end">
+        <md-button title="Criar manutenção" @click="fechar">
+          <md-icon>close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
 
     <md-dialog-content>
       <formulario-criar-ativo :aposSalvar="fechar" />
