@@ -13,10 +13,8 @@ const adicionarManutencao = (state, { identificador, manutencao }) => {
 
 const realizarManutencao = (state, { identificadorAtivo, identificadorManutencao }) => {
     const ativo = state.ativos.find((ativo) => ativo.identificador == identificadorAtivo);
-    ativo.manutencoes.forEach((manutencao) => {
-        if (manutencao.identificador == identificadorManutencao)
-            manutencao.realizada = true;
-    });
+    let manutencao = ativo.manutencoes.find((manutencao) => manutencao.identificador == identificadorManutencao);
+    manutencao.realizada = true;
 }
 
 const removerAtivo = (state, ativo) => {

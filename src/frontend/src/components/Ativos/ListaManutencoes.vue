@@ -15,8 +15,9 @@
 
         <md-button
           v-if="!manutencao.realizada"
-          @click="realizarManutencao({identificadorAtivo: ativo.identificador, identificadorManutencao: manutencao.identificador})"
-          class="md-icon-button md-list-action">
+          @click="realizar(manutencao)"
+          class="md-icon-button md-list-action"
+        >
           <md-icon>check</md-icon>
         </md-button>
       </md-list-item>
@@ -36,6 +37,10 @@ export default {
     }
   },
   methods: {
+    realizar(manutencao) {
+        this.realizarManutencao({identificadorAtivo: this.ativo.identificador, identificadorManutencao: manutencao.identificador});
+        manutencao.realizada = true;
+    },
     ...mapActions("Ativos", ["realizarManutencao"])
   }
 };

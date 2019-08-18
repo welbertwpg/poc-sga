@@ -57,7 +57,6 @@ export default {
     form: {
       dataHora: null,
       tipo: null,
-      intervaloHorasUso: null
     },
     enviando: false
   }),
