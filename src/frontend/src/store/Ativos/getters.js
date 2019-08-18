@@ -3,14 +3,19 @@ import Moment from "moment";
 const obterDescricaoFrequencia = (tipo) => {
     switch (tipo) {
         case 1:
+        case "1":
             return "Diária";
         case 2:
+        case "2":
             return "Semanal";
         case 3:
+        case "3":
             return "Mensal";
         case 4:
+        case "4":
             return "Anual";
         case 5:
+        case "5":
             return "Intervalo";
     }
 }
@@ -18,10 +23,13 @@ const obterDescricaoFrequencia = (tipo) => {
 const obterDescricaoTipoAtivo = (frequencia) => {
     switch (frequencia) {
         case 1:
+        case "1":
             return "Equipamento";
         case 2:
+        case "2":
             return "Máquina";
         case 3:
+        case "3":
             return "Insumo";
     }
 }

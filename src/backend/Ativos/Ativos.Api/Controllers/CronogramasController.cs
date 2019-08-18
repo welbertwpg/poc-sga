@@ -26,10 +26,11 @@ namespace Ativos.Api.Controllers
             => Ok(repositorioCronogramas.Obter());
 
         [HttpPost]
-        public void Inserir([FromBody]CronogramaManutencao cronograma)
+        public IActionResult Inserir([FromBody]CronogramaManutencao cronograma)
         {
             validadorCronogramas.ValidateAndThrow(cronograma);
             repositorioCronogramas.Inserir(cronograma);
+            return Ok(cronograma.Identificador);
         }
 
         [HttpDelete("{id}")]

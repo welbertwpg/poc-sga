@@ -15,8 +15,10 @@ const adicionarAtivo = async ({ commit }, ativo) => {
 
 const removerAtivo = async ({ commit }, ativo) => {
     const resposta = await repositorioAtivos.excluir(ativo.identificador);
-    if (resposta.status == 200)
+    if (resposta.status == 200) {
+        ativo.identificador = resposta.data;
         commit('removerAtivo', ativo);
+    }
 }
 
 const atualizarCronogramas = async ({ commit }) => {
@@ -27,8 +29,10 @@ const atualizarCronogramas = async ({ commit }) => {
 
 const adicionarCronograma = async ({ commit }, cronograma) => {
     const resposta = await repositorioCronogramas.inserir(cronograma);
-    if (resposta.status == 200)
+    if (resposta.status == 200) {
+        cronograma.identificador = resposta.data;
         commit('adicionarCronograma', cronograma);
+    }
 }
 
 const removerCronograma = async ({ commit }, cronograma) => {

@@ -39,17 +39,19 @@ namespace Ativos.Api.Controllers
             => Ok(repositorioAtivos.Obter(ObjectId.Parse(id)));
 
         [HttpPost]
-        public void Inserir([FromBody]Ativo ativo)
+        public IActionResult Inserir([FromBody]Ativo ativo)
         {
             validadorAtivos.ValidateAndThrow(ativo);
             repositorioAtivos.Inserir(ativo);
+            return Ok(ativo.Identificador);
         }
 
         [HttpPost("{id}/manutencao")]
-        public void InserirManutencao([FromRoute]string id, [FromBody]Manutencao manutencao)
+        public IActionResult InserirManutencao([FromRoute]string id, [FromBody]Manutencao manutencao)
         {
             validadorManutencao.ValidateAndThrow(manutencao);
             repositorioManutencoes.Inserir(ObjectId.Parse(id), manutencao);
+            return Ok(manutencao.Identificador);
         }
 
         [HttpPut("{id}")]
@@ -68,11 +70,12 @@ namespace Ativos.Api.Controllers
             => repositorioAtivos.Deletar(ObjectId.Parse(id));
 
         [HttpPost("adquirir/{id}")]
-        public void Adquirir([FromRoute]int id)
+        public IActionResult Adquirir([FromRoute]int id)
         {
             var ativo = servicoAquisicoes.AdquirirAtivo(id);
             validadorAtivos.ValidateAndThrow(ativo);
             repositorioAtivos.Inserir(ativo);
+            return Ok(ativo);
         }
     }
 }
