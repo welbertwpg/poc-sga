@@ -7,14 +7,14 @@
         </div>
 
         <div class="md-toolbar-section-end">
-          <md-button class="md-primary md-raised" @click="novoAtivo">
+          <md-button class="md-primary md-raised" @click="abrirDialogCriar">
             <md-icon>add</md-icon>
           </md-button>
         </div>
       </md-table-toolbar>
 
       <md-table-empty-state md-label="Nenhum ativo encontrado">
-        <md-button class="md-primary md-raised" @click="novoAtivo">Criar novo ativo</md-button>
+        <md-button class="md-primary md-raised" @click="abrirDialogCriar">Criar novo ativo</md-button>
       </md-table-empty-state>
 
       <md-table-row slot="md-table-row" slot-scope="{ item }">
@@ -33,12 +33,15 @@
         </md-table-cell>
       </md-table-row>
     </md-table>
-    <dialog-criar-ativo v-model="exibirCriarAtivo" />
+    <dialog-sga :title="'Criar ativo'" v-model="exibirCriarAtivo">
+      <formulario-criar-ativo :aposSalvar="fecharDialogCriar" />
+    </dialog-sga>
   </div>
 </template>
 
 <script>
-import DialogCriarAtivo from "./DialogCriarAtivo";
+import DialogSga from "./DialogSga";
+import FormularioCriarAtivo from "./FormularioCriarAtivo";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
@@ -51,8 +54,11 @@ export default {
     ...mapGetters("Ativos", ["ativos"])
   },
   methods: {
-    novoAtivo() {
+    abrirDialogCriar() {
       this.exibirCriarAtivo = true;
+    },
+    fecharDialogCriar(){
+      this.exibirCriarAtivo = false;
     },
     ...mapActions("Ativos", ["atualizarAtivos", "removerAtivo"])
   },
@@ -60,7 +66,8 @@ export default {
     await this.atualizarAtivos();
   },
   components: {
-    DialogCriarAtivo
+    DialogSga,
+    FormularioCriarAtivo
   }
 };
 </script>
