@@ -15,6 +15,7 @@ const realizarManutencao = (state, { identificadorAtivo, identificadorManutencao
     const ativo = state.ativos.find((ativo) => ativo.identificador == identificadorAtivo);
     let manutencao = ativo.manutencoes.find((manutencao) => manutencao.identificador == identificadorManutencao);
     manutencao.realizada = true;
+    manutencao.dataHoraRealizada = new Date();
 }
 
 const removerAtivo = (state, ativo) => {

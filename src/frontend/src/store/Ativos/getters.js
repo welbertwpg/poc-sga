@@ -55,7 +55,7 @@ const ativos = (state) => state.ativos.map((ativo) => ({
     mediaHorasUsoDiariamente: ativo.mediaHorasUsoDiariamente,
     manutencoes: ativo.manutencoes.map((manutencao) => ({
         identificador: manutencao.identificador,
-        dataHora: Moment(String(manutencao.dataHora)).format("DD/MM/YYYY"),
+        dataHora: Moment(String(manutencao.dataHoraRealizada || manutencao.dataHora)).format("DD/MM/YYYY"),
         tipo: obterDescricaoTipoManutencao(manutencao.tipo),
         realizada: manutencao.realizada
     }))

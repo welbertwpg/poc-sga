@@ -27,6 +27,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import Moment from "moment";
 
 export default {
   name: "listaManutencoes",
@@ -40,6 +41,7 @@ export default {
     realizar(manutencao) {
         this.realizarManutencao({identificadorAtivo: this.ativo.identificador, identificadorManutencao: manutencao.identificador});
         manutencao.realizada = true;
+        manutencao.dataHora = Moment().format("DD/MM/YYYY")
     },
     ...mapActions("Ativos", ["realizarManutencao"])
   }
