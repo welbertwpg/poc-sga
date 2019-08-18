@@ -45,7 +45,14 @@
       <formulario-criar-manutencao :ativo="ativoManutencao" :aposSalvar="fecharDialogCriarManutencao" />
     </dialog-sga>
     <dialog-sga :title="'Criar ativo'" v-model="exibirCriarAtivo">
-      <formulario-criar-ativo :aposSalvar="fecharDialogCriar" />
+      <md-tabs>
+        <md-tab id="criar" md-label="Criar">
+          <formulario-criar-ativo :aposSalvar="fecharDialogCriar" />
+        </md-tab>
+        <md-tab id="adquirir" md-label="Adquirir">
+          <lista-adquiriveis :aposSalvar="fecharDialogCriar" />
+        </md-tab>
+      </md-tabs>
     </dialog-sga>
   </div>
 </template>
@@ -53,8 +60,9 @@
 <script>
 import DialogSga from "./DialogSga";
 import FormularioCriarAtivo from "./FormularioCriarAtivo";
+import ListaAdquiriveis from "./ListaAdquiriveis";
 import FormularioCriarManutencao from "./FormularioCriarManutencao";
-import ListaManutencoes from "./ListaManutencoes"
+import ListaManutencoes from "./ListaManutencoes";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
@@ -96,6 +104,7 @@ export default {
   components: {
     DialogSga,
     FormularioCriarAtivo,
+    ListaAdquiriveis,
     FormularioCriarManutencao,
     ListaManutencoes
   }

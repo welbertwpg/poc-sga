@@ -1,11 +1,23 @@
 ﻿using Ativos.Dominio.Interfaces;
 using Ativos.Dominio.Entidades;
 using System;
+using System.Collections.Generic;
 
 namespace Ativos.Infra.Servicos
 {
     public class MockServicoAquisicoes : IServicoAquisicoes
     {
+        public IEnumerable<Adquirivel> ObterAdquiriveis()
+            => new List<Adquirivel>
+            {
+                new Adquirivel
+                {
+                    Identificador = 1,
+                    Nome= "Caminhão de mineiração",
+                    Descricao =  "Suporta até 363 toneladas de minério."
+                }
+            };
+
         //Também deve ser prevista uma integração deste módulo com o sistema de aquisições, não contemplado no escopo deste trabalho.
         public Ativo AdquirirAtivo(int id)
             => new Ativo

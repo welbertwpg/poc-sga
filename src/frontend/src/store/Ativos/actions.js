@@ -7,10 +7,22 @@ const atualizarAtivos = async ({ commit }) => {
         commit('atualizarAtivos', resposta.data);
 }
 
+const atualizarAdquiriveis = async ({ commit }) => {
+    const resposta = await repositorioAtivos.obterAdquiriveis();
+    if (resposta.status == 200)
+        commit('atualizarAdquiriveis', resposta.data);
+}
+
 const adicionarAtivo = async ({ commit }, ativo) => {
     const resposta = await repositorioAtivos.inserir(ativo);
     if (resposta.status == 200)
         commit('adicionarAtivo', ativo);
+}
+
+const adquirirAtivo = async ({ commit }, identificador) => {
+    const resposta = await repositorioAtivos.adquirir(identificador);
+    if (resposta.status == 200)
+        commit('adicionarAtivo', resposta.data);
 }
 
 const adicionarManutencao = async ({ commit }, { identificador, manutencao }) => {
@@ -57,7 +69,9 @@ const removerCronograma = async ({ commit }, cronograma) => {
 
 export default {
     atualizarAtivos,
+    atualizarAdquiriveis,
     adicionarAtivo,
+    adquirirAtivo,
     removerAtivo,
     adicionarManutencao,
     realizarManutencao,

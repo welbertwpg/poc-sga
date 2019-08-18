@@ -1,4 +1,5 @@
 export default {
     ativos: [],
-    cronogramas: []
+    cronogramas: [],
+    adquiriveis: []
 }

@@ -2,6 +2,10 @@ const atualizarAtivos = (state, ativos) => {
     state.ativos = ativos
 }
 
+const atualizarAdquiriveis = (state, adquiriveis) => {
+    state.adquiriveis = adquiriveis
+}
+
 const adicionarAtivo = (state, ativo) => {
     state.ativos.push(ativo)
 }
@@ -38,6 +42,7 @@ const removerCronograma = (state, cronograma) => {
 
 export default {
     atualizarAtivos,
+    atualizarAdquiriveis,
     adicionarAtivo,
     removerAtivo,
     adicionarManutencao,

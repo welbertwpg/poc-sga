@@ -1,28 +1,26 @@
 <template>
-  <div>
-    <md-list>
-      <md-list-item v-if="!ativo.manutencoes.length">
-        <span>Nenhuma manutenção para este ativo</span>
-      </md-list-item>
+  <md-list>
+    <md-list-item v-if="!ativo.manutencoes.length">
+      <span>Nenhuma manutenção para este ativo</span>
+    </md-list-item>
 
-      <md-list-item v-for="manutencao in ativo.manutencoes" v-bind:key="manutencao.identificador">
-        <div class="md-list-item-text">
-          <span>{{ manutencao.dataHora }}</span>
-          <span>{{ manutencao.tipo }}</span>
-        </div>
+    <md-list-item v-for="manutencao in ativo.manutencoes" v-bind:key="manutencao.identificador">
+      <div class="md-list-item-text">
+        <span>{{ manutencao.dataHora }}</span>
+        <span>{{ manutencao.tipo }}</span>
+      </div>
 
-        <md-icon v-if="manutencao.realizada" class="md-primary">check</md-icon>
+      <md-icon v-if="manutencao.realizada" class="md-primary">check</md-icon>
 
-        <md-button
-          v-if="!manutencao.realizada"
-          @click="realizar(manutencao)"
-          class="md-icon-button md-list-action"
-        >
-          <md-icon>check</md-icon>
-        </md-button>
-      </md-list-item>
-    </md-list>
-  </div>
+      <md-button
+        v-if="!manutencao.realizada"
+        @click="realizar(manutencao)"
+        class="md-icon-button md-list-action"
+      >
+        <md-icon>check</md-icon>
+      </md-button>
+    </md-list-item>
+  </md-list>
 </template>
 
 <script>
@@ -39,9 +37,12 @@ export default {
   },
   methods: {
     realizar(manutencao) {
-        this.realizarManutencao({identificadorAtivo: this.ativo.identificador, identificadorManutencao: manutencao.identificador});
-        manutencao.realizada = true;
-        manutencao.dataHora = Moment().format("DD/MM/YYYY")
+      this.realizarManutencao({
+        identificadorAtivo: this.ativo.identificador,
+        identificadorManutencao: manutencao.identificador
+      });
+      manutencao.realizada = true;
+      manutencao.dataHora = Moment().format("DD/MM/YYYY");
     },
     ...mapActions("Ativos", ["realizarManutencao"])
   }

@@ -69,6 +69,10 @@ namespace Ativos.Api.Controllers
         public void Deletar([FromRoute]string id)
             => repositorioAtivos.Deletar(ObjectId.Parse(id));
 
+        [HttpGet("adquirir")]
+        public IActionResult Adquirir()
+            => Ok(servicoAquisicoes.ObterAdquiriveis());
+
         [HttpPost("adquirir/{id}")]
         public IActionResult Adquirir([FromRoute]int id)
         {
