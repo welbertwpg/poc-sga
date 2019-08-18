@@ -106,7 +106,7 @@
 <script>
 import { validationMixin } from "vuelidate";
 import { required, between, minLength } from "vuelidate/lib/validators";
-import repositorioAtivos from "../../services/Ativos/repositorioAtivos";
+import { mapActions } from "vuex";
 
 export default {
   name: "formularioCriarAtivo",
@@ -161,7 +161,7 @@ export default {
     },
     salvar() {
       this.enviando = true;
-      repositorioAtivos.inserir(this.form).then(() => {
+      this.adicionarAtivo(this.form).then(() => {
         this.enviando = false;
         if (this.aposSalvar) this.aposSalvar();
       });
@@ -172,7 +172,8 @@ export default {
       if (!this.$v.$invalid) {
         this.salvar();
       }
-    }
+    },
+    ...mapActions("Ativos", ["adicionarAtivo"])
   }
 };
 </script>

@@ -74,7 +74,7 @@
 <script>
 import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
-import repositorioCronogramas from "../../services/Ativos/repositorioCronogramas";
+import { mapActions } from "vuex";
 
 export default {
   name: "formularioCriarCronograma",
@@ -124,7 +124,7 @@ export default {
     salvar() {
       if (this.form.frequencia != "5") this.form.intervaloHorasUso = null;
       this.enviando = true;
-      repositorioCronogramas.inserir(this.form).then(() => {
+      this.adicionarCronograma(this.form).then(() => {
         this.enviando = false;
         if (this.aposSalvar) this.aposSalvar();
       });
@@ -135,7 +135,8 @@ export default {
       if (!this.$v.$invalid) {
         this.salvar();
       }
-    }
+    },
+    ...mapActions("Ativos", ["adicionarCronograma"])
   }
 };
 </script>
