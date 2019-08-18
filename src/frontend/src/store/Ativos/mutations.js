@@ -6,6 +6,11 @@ const adicionarAtivo = (state, ativo) => {
     state.ativos.push(ativo)
 }
 
+const adicionarManutencao = (state, { identificador, manutencao }) => {
+    const ativo = state.ativos.find((ativo) => ativo.identificador == identificador);
+    ativo.manutencoes.push(manutencao)
+}
+
 const removerAtivo = (state, ativo) => {
     const index = state.ativos.findIndex((a) => a.identificador == ativo.identificador)
     state.ativos.splice(index, 1)
@@ -28,6 +33,7 @@ export default {
     atualizarAtivos,
     adicionarAtivo,
     removerAtivo,
+    adicionarManutencao,
     atualizarCronogramas,
     adicionarCronograma,
     removerCronograma

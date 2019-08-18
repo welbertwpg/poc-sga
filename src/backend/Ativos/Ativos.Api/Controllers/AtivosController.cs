@@ -46,7 +46,7 @@ namespace Ativos.Api.Controllers
             return Ok(ativo.Identificador);
         }
 
-        [HttpPost("{id}/manutencao")]
+        [HttpPost("{id}/manutencoes")]
         public IActionResult InserirManutencao([FromRoute]string id, [FromBody]Manutencao manutencao)
         {
             validadorManutencao.ValidateAndThrow(manutencao);
@@ -61,7 +61,7 @@ namespace Ativos.Api.Controllers
             repositorioAtivos.Atualizar(ativo);
         }
 
-        [HttpPut("{id}/manutencao/{idManutencao}")]
+        [HttpPut("{id}/manutencoes/{idManutencao}")]
         public void AtualizarManutencao([FromRoute]string id, [FromRoute]string idManutencao)
             => repositorioManutencoes.AtualizarStatus(ObjectId.Parse(id), ObjectId.Parse(idManutencao), true);
 

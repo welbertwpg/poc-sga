@@ -24,7 +24,8 @@
         <md-table-cell md-label="Data">{{ item.dataAquisicao }}</md-table-cell>
         <md-table-cell md-label="Observações">{{ item.observacoes }}</md-table-cell>
         <md-table-cell md-label="Ações">
-          <md-button title="Criar manutenção">
+          <md-button title="Criar manutenção" @click="abrirDialogCriarManutencao(item)">
+            <md-icon>add</md-icon>
             <md-icon>build</md-icon>
           </md-button>
           <md-button title="Excluir" @click="removerAtivo(item)">
@@ -33,6 +34,9 @@
         </md-table-cell>
       </md-table-row>
     </md-table>
+    <dialog-sga :title="'Criar manutenção'" v-model="exibirCriarManutencao">
+      <formulario-criar-manutencao :ativo="ativoManutencao" :aposSalvar="fecharDialogCriarManutencao" />
+    </dialog-sga>
     <dialog-sga :title="'Criar ativo'" v-model="exibirCriarAtivo">
       <formulario-criar-ativo :aposSalvar="fecharDialogCriar" />
     </dialog-sga>
@@ -42,13 +46,16 @@
 <script>
 import DialogSga from "./DialogSga";
 import FormularioCriarAtivo from "./FormularioCriarAtivo";
+import FormularioCriarManutencao from "./FormularioCriarManutencao";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "listaAtivos",
   data: () => ({
     filtro: "",
-    exibirCriarAtivo: false
+    exibirCriarAtivo: false,
+    exibirCriarManutencao: false,
+    ativoManutencao: null
   }),
   computed: {
     ...mapGetters("Ativos", ["ativos"])
@@ -57,8 +64,15 @@ export default {
     abrirDialogCriar() {
       this.exibirCriarAtivo = true;
     },
-    fecharDialogCriar(){
+    fecharDialogCriar() {
       this.exibirCriarAtivo = false;
+    },
+    abrirDialogCriarManutencao(ativo) {
+      this.ativoManutencao = ativo;
+      this.exibirCriarManutencao = true;
+    },
+    fecharDialogCriarManutencao() {
+      this.exibirCriarManutencao = false;
     },
     ...mapActions("Ativos", ["atualizarAtivos", "removerAtivo"])
   },
@@ -67,7 +81,8 @@ export default {
   },
   components: {
     DialogSga,
-    FormularioCriarAtivo
+    FormularioCriarAtivo,
+    FormularioCriarManutencao
   }
 };
 </script>

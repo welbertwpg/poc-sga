@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Ativos.Api.Controllers
 {
-    [Route("api/manutencao/cronogramas")]
+    [Route("api/manutencoes/cronogramas")]
     [ApiController]
     public class CronogramasController : Controller
     {
