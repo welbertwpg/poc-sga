@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace Ativos.Infra.Servicos
 {
+    //Também deve ser prevista uma integração deste módulo com o sistema de aquisições, não contemplado no escopo deste trabalho.
     public class MockServicoAquisicoes : IServicoAquisicoes
     {
         public IEnumerable<Adquirivel> ObterAdquiriveis()
@@ -18,7 +19,6 @@ namespace Ativos.Infra.Servicos
                 }
             };
 
-        //Também deve ser prevista uma integração deste módulo com o sistema de aquisições, não contemplado no escopo deste trabalho.
         public Ativo AdquirirAtivo(int id)
             => new Ativo
             {
