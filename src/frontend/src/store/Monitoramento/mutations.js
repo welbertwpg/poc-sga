@@ -2,11 +2,11 @@ const atualizarLimites = (state, limites) => {
     state.limites = limites;
 }
 
-const atualizarResultadoSensores = (state, resultado) => {
+const atualizarResultadosSensores = (state, resultado) => {
     state.resultadoSensores = resultado;
 }
 
 export default {
     atualizarLimites,
-    atualizarResultadoSensores
+    atualizarResultadosSensores
 }

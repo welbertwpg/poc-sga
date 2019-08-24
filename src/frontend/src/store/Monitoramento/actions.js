@@ -8,14 +8,14 @@ const preencherDados = async ({ commit }) => {
         commit("atualizarLimites", respostaLimites.data)
 
     if (respostaSensores.status == 200)
-        commit("atualizarResultadoSensores", respostaSensores.data)
+        commit("atualizarResultadosSensores", respostaSensores.data)
 }
 
-const atualizarResultadoSensores = ({ commit }, resultado) => {
-    commit("atualizarResultadoSensores", resultado)
+const atualizarResultadosSensores = ({ commit }, resultado) => {
+    commit("atualizarResultadosSensores", resultado)
 }
 
 export default {
     preencherDados,
-    atualizarResultadoSensores
+    atualizarResultadosSensores
 }

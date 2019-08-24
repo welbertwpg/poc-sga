@@ -30,6 +30,7 @@ namespace Monitoramento.Api
             services.AddSingleton<IServicoDefesaCivil, MockServicoDefesaCivil>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
             services.AddSignalR();
         }
 
@@ -48,7 +49,7 @@ namespace Monitoramento.Api
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<SensoresHub>("/sensoresHub");
+                routes.MapHub<SensoresHub>("/hubs/sensores");
             });
 
             app.UseHttpsRedirection();

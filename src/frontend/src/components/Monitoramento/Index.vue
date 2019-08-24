@@ -8,6 +8,7 @@
 <script>
 import Grafico from "./Grafico";
 import { mapActions, mapGetters } from "vuex";
+import HubSensores from "../../services/Monitoramento/hubSensores.js";
 
 export default {
   name: "monitoramento",
@@ -40,10 +41,18 @@ export default {
     }
   },
   methods: {
-    ...mapActions("Monitoramento", ["preencherDados"])
+    ...mapActions("Monitoramento", [
+      "preencherDados",
+      "atualizarResultadosSensores"
+    ])
   },
   created() {
     this.preencherDados();
+
+    HubSensores.on(
+      "AtualizarResultadosSensores",
+      this.atualizarResultadosSensores
+    );
   },
   components: {
     Grafico
