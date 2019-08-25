@@ -5,12 +5,12 @@
     </md-list-item>
 
     <md-list-item v-for="(processo, index) in processos" v-bind:key="processo.identificador">
-      <div class="md-list-item-text">
+      <md-button title="Selecionar" @click="atualizarProcesso(processo)" class="md-list-item-text">
         <span>
           <b>{{ index + 1 }}.</b>
           {{ processo.nome }}
         </span>
-      </div>
+      </md-button>
 
       <md-button title="Editar" @click="editar(processo)" class="md-icon-button md-list-action">
         <md-icon>edit</md-icon>
@@ -20,7 +20,6 @@
       </md-button>
     </md-list-item>
 
-    <md-divider class="md-inset"></md-divider>
   </md-list>
 </template>
 
@@ -35,7 +34,7 @@ export default {
   methods: {
     editar() {},
     excluir() {},
-    ...mapActions("Processos", ["atualizarProcessos"])
+    ...mapActions("Processos", ["atualizarProcessos", "atualizarProcesso"])
   },
   created() {
     this.atualizarProcessos();

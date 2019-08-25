@@ -1,3 +1,4 @@
 export default {
-    processos: []
+    processos: [],
+    processo: {}
 }

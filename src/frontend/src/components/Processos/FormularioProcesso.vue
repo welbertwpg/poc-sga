@@ -1,13 +1,17 @@
 <template>
-  <simple-flowchart :scene.sync="data"></simple-flowchart>
+  <simple-flowchart v-if="processo.identificador" :scene.sync="data"></simple-flowchart>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import SimpleFlowchart from "vue-simple-flowchart";
 import "vue-simple-flowchart/dist/vue-flowchart.css";
 
 export default {
   name: "formularioProcesso",
+  computed: {
+    ...mapState("Processos", ["processo"])
+  },
   data() {
     return {
       data: {

@@ -6,6 +6,11 @@ export const atualizarProcessos = async ({ commit }) => {
         commit('atualizarProcessos', resposta.data);
 }
 
+export const atualizarProcesso = async ({ commit }, processo) => {
+    commit('atualizarProcesso', processo);
+}
+
 export default {
-    atualizarProcessos
+    atualizarProcessos,
+    atualizarProcesso
 }
