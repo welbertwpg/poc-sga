@@ -1,5 +1,5 @@
 <template>
-  <md-app md-waterfall md-mode="fixed">
+  <md-app md-mode="reveal">
     <md-app-toolbar class="md-primary" md-elevation="0">
       <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible">
         <md-icon>menu</md-icon>
@@ -7,7 +7,7 @@
       <span class="md-title">Sistema de Gestão Ambiental</span>
     </md-app-toolbar>
 
-    <md-app-drawer :md-active.sync="menuVisible" md-persistent="mini">
+    <md-app-drawer :md-active.sync="menuVisible">
       <md-toolbar class="md-transparent" md-elevation="0">
         <span>Navegação</span>
 
@@ -36,8 +36,8 @@
       </md-list>
     </md-app-drawer>
 
-    <md-app-content class="md-layout">
-      <router-view class="md-layout-item" />
+    <md-app-content>
+      <router-view />
     </md-app-content>
   </md-app>
 </template>

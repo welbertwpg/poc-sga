@@ -1,34 +1,35 @@
 <template>
   <div>
-    <md-table :value="cronogramas">
-      <md-table-toolbar>
-        <div class="md-toolbar-section-start">
-          <h1 class="md-title">Cronogramas</h1>
+    <md-toolbar md-elevation="0" class="md-transparent">
+      <div class="md-toolbar-section-start">
+        <h1 class="md-title">Cronogramas</h1>
+      </div>
+
+      <div class="md-toolbar-section-end">
+        <md-button class="md-primary md-raised" @click="abrirDialogCriar">
+          <md-icon>add</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-list>
+      <md-list-item v-if="!cronogramas.length">
+        <span>Nenhum cronograma.</span>
+      </md-list-item>
+
+      <md-list-item v-for="cronograma in cronogramas" v-bind:key="cronograma.identificador">
+        <div class="md-list-item-text">
+          <span>{{ cronograma.identificador }}</span>
+          <span>{{ cronograma.frequencia }}</span>
+          <span>{{ cronograma.tipoAtivo }}</span>
+          <span>{{ cronograma.intervaloHorasUso }}</span>
         </div>
 
-        <div class="md-toolbar-section-end">
-          <md-button class="md-primary md-raised" @click="abrirDialogCriar">
-            <md-icon>add</md-icon>
-          </md-button>
-        </div>
-      </md-table-toolbar>
+        <md-button class="md-icon-button md-list-action" title="Excluir" @click="removerCronograma(cronograma)">
+          <md-icon>delete</md-icon>
+        </md-button>
+      </md-list-item>
+    </md-list>
 
-      <md-table-empty-state md-label="Nenhum cronograma encontrado">
-        <md-button class="md-primary md-raised" @click="abrirDialogCriar">Criar novo cronograma</md-button>
-      </md-table-empty-state>
-
-      <md-table-row slot="md-table-row" slot-scope="{ item }">
-        <md-table-cell md-label="Identificador">{{ item.identificador }}</md-table-cell>
-        <md-table-cell md-label="Frequencia">{{ item.frequencia }}</md-table-cell>
-        <md-table-cell md-label="Tipo">{{ item.tipoAtivo }}</md-table-cell>
-        <md-table-cell md-label="Intervalo">{{ item.intervaloHorasUso }}</md-table-cell>
-        <md-table-cell md-label="Ações">
-          <md-button title="Excluir" @click="removerCronograma(item)">
-            <md-icon>delete</md-icon>
-          </md-button>
-        </md-table-cell>
-      </md-table-row>
-    </md-table>
     <dialog-sga :title="'Criar cronograma'" v-model="exibirCriarCronograma">
       <formulario-criar-cronograma :aposSalvar="fecharDialogCriar" />
     </dialog-sga>
@@ -53,7 +54,7 @@ export default {
     abrirDialogCriar() {
       this.exibirCriarCronograma = true;
     },
-    fecharDialogCriar(){
+    fecharDialogCriar() {
       this.exibirCriarCronograma = false;
     },
     ...mapActions("Ativos", ["atualizarCronogramas", "removerCronograma"])
