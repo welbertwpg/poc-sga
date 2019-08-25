@@ -1,7 +1,7 @@
 <template>
   <div class="md-layout">
     <span class="md-title">Monitoramento</span>
-    <grafico class="md-layout-item md-size-30 md-small-size-100" :chartData="dadosGrafico" />
+    <grafico class="md-layout-item md-size-35 md-medium-size-60 md-small-size-100" :chartData="dadosGrafico" />
   </div>
 </template>
 
