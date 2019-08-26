@@ -13,8 +13,6 @@ namespace Processos.Dominio.Entidades
         public Guid Identificador { get; set; }
         public TipoEtapa Tipo { get; set; }
         public string Nome { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
         public ICollection<Guid> EtapasSaida { get; set; }
     }
 }

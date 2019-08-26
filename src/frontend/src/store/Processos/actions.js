@@ -1,13 +1,15 @@
 import repositorioProcessos from '../../services/Processos/repositorioProcessos'
 
-export const atualizarProcessos = async ({ commit }) => {
-    const resposta = await repositorioProcessos.obter();
+const atualizarProcessos = async ({ commit }) => {
+    const resposta = await repositorioProcessos.obter("");
     if (resposta.status == 200)
         commit('atualizarProcessos', resposta.data);
 }
 
-export const atualizarProcesso = async ({ commit }, processo) => {
-    commit('atualizarProcesso', processo);
+const atualizarProcesso = async ({ commit }, processo) => {
+    const resposta = await repositorioProcessos.obter(processo.identificador);
+    if (resposta.status == 200)
+        commit('atualizarProcesso', resposta.data);
 }
 
 export default {

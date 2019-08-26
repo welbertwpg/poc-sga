@@ -1,8 +1,8 @@
-export const atualizarProcessos = (state, processos) => {
+const atualizarProcessos = (state, processos) => {
     state.processos = processos;
 }
 
-export const atualizarProcesso = (state, processo) => {
+const atualizarProcesso = (state, processo) => {
     state.processo = processo;
 }
 

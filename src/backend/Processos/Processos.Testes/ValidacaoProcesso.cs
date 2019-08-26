@@ -23,8 +23,6 @@ namespace Processos.Testes
                         Identificador = Guid.Parse("2412659d-9bb9-4576-9117-5d74330bd711"),
                         Nome = "Inicio",
                         Tipo = TipoEtapa.Inicio,
-                        X = 1,
-                        Y = 2,
                         EtapasSaida = new List<Guid>{
                             Guid.Parse("2c709c55-4a4f-44ea-8970-34a85cd907ad"),
                             Guid.Parse("860bdb5b-0ce9-40d9-8c92-d8a3f4c92a3f")
@@ -34,24 +32,18 @@ namespace Processos.Testes
                         Identificador = Guid.Parse("860bdb5b-0ce9-40d9-8c92-d8a3f4c92a3f"),
                         Nome = "Meio",
                         Tipo = TipoEtapa.Acao,
-                        X = 1,
-                        Y = 2,
                         EtapasSaida = new List<Guid>{ Guid.Parse("69f416df-77e9-4993-8bf7-6d114334a551") }
                     },
                     new Etapa {
                         Identificador = Guid.Parse("2c709c55-4a4f-44ea-8970-34a85cd907ad"),
                         Nome = "Meio2",
                         Tipo = TipoEtapa.Acao,
-                        X = 1,
-                        Y = 2,
                         EtapasSaida = new List<Guid>{ Guid.Parse("69f416df-77e9-4993-8bf7-6d114334a551") }
                     },
                     new Etapa {
                         Identificador = Guid.Parse("69f416df-77e9-4993-8bf7-6d114334a551"),
                         Nome = "Fim",
-                        Tipo = TipoEtapa.Fim,
-                        X = 1,
-                        Y = 2
+                        Tipo = TipoEtapa.Fim
                     }
                 }
             };
@@ -72,16 +64,12 @@ namespace Processos.Testes
                         Identificador = Guid.Parse("860bdb5b-0ce9-40d9-8c92-d8a3f4c92a3f"),
                         Nome = "Meio",
                         Tipo = TipoEtapa.Acao,
-                        X = 1,
-                        Y = 2,
                         EtapasSaida = new List<Guid>{ Guid.Parse("69f416df-77e9-4993-8bf7-6d114334a551") }
                     },
                     new Etapa {
                         Identificador = Guid.Parse("69f416df-77e9-4993-8bf7-6d114334a551"),
                         Nome = "Fim",
-                        Tipo = TipoEtapa.Fim,
-                        X = 1,
-                        Y = 2
+                        Tipo = TipoEtapa.Fim
                     }
                 }
             };
@@ -102,16 +90,12 @@ namespace Processos.Testes
                         Identificador = Guid.Parse("2412659d-9bb9-4576-9117-5d74330bd711"),
                         Nome = "Inicio",
                         Tipo = TipoEtapa.Inicio,
-                        X = 1,
-                        Y = 2,
                         EtapasSaida = new List<Guid>{ Guid.Parse("860bdb5b-0ce9-40d9-8c92-d8a3f4c92a3f") }
                     },
                     new Etapa {
                         Identificador = Guid.Parse("860bdb5b-0ce9-40d9-8c92-d8a3f4c92a3f"),
                         Nome = "Meio",
                         Tipo = TipoEtapa.Acao,
-                        X = 1,
-                        Y = 2,
                         EtapasSaida = new List<Guid>{ Guid.Parse("69f416df-77e9-4993-8bf7-6d114334a551") }
                     }
                 }
@@ -133,24 +117,18 @@ namespace Processos.Testes
                         Identificador = Guid.Parse("2412659d-9bb9-4576-9117-5d74330bd711"),
                         Nome = "Inicio",
                         Tipo = TipoEtapa.Inicio,
-                        X = 1,
-                        Y = 2,
                         EtapasSaida = new List<Guid>{ }
                     },
                     new Etapa {
                         Identificador = Guid.Parse("860bdb5b-0ce9-40d9-8c92-d8a3f4c92a3f"),
                         Nome = "Meio",
                         Tipo = TipoEtapa.Acao,
-                        X = 1,
-                        Y = 2,
                         EtapasSaida = new List<Guid>{ }
                     },
                     new Etapa {
                         Identificador = Guid.Parse("69f416df-77e9-4993-8bf7-6d114334a551"),
                         Nome = "Fim",
-                        Tipo = TipoEtapa.Fim,
-                        X = 1,
-                        Y = 2
+                        Tipo = TipoEtapa.Fim
                     }
                 }
             };

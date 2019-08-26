@@ -43,15 +43,13 @@ namespace Processos.Infra.Repositorios
 
             foreach (var etapa in processo.Etapas)
             {
-                dbConnection.Execute("INSERT INTO Etapas (Identificador, IdentificadorProcesso, Nome, Tipo, X, Y)" +
-                    "VALUES (@Identificador, @IdentificadorProcesso, @Nome, @Tipo, @X, @Y)", new
+                dbConnection.Execute("INSERT INTO Etapas (Identificador, IdentificadorProcesso, Nome, Tipo)" +
+                    "VALUES (@Identificador, @IdentificadorProcesso, @Nome, @Tipo)", new
                     {
                         etapa.Identificador,
                         IdentificadorProcesso = processo.Identificador,
                         etapa.Nome,
                         etapa.Tipo,
-                        etapa.X,
-                        etapa.Y
                     }, transacao);
             }
 
@@ -86,8 +84,6 @@ namespace Processos.Infra.Repositorios
                     E.Identificador Etapas_Identificador,
                     E.Tipo Etapas_Tipo,
                     E.Nome Etapas_Nome,
-                    E.X Etapas_X,
-                    E.Y Etapas_Y,
                     ER.IdentificadorEtapaSaida Etapas_EtapasSaida_$
                 FROM Processos P
                 JOIN Etapas E ON P.Identificador = E.IdentificadorProcesso

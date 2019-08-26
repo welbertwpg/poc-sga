@@ -12,14 +12,10 @@
         </span>
       </md-button>
 
-      <md-button title="Editar" @click="editar(processo)" class="md-icon-button md-list-action">
-        <md-icon>edit</md-icon>
-      </md-button>
       <md-button title="Excluir" @click="excluir(processo)" class="md-icon-button md-list-action">
         <md-icon>delete</md-icon>
       </md-button>
     </md-list-item>
-
   </md-list>
 </template>
 
@@ -43,12 +39,6 @@ export default {
 </script>
 
 <style scoped>
-.md-list {
-  width: 400px;
-  display: inline-block;
-  vertical-align: top;
-}
-
 .md-inset {
   margin-left: 0px;
 }
