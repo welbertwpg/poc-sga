@@ -24,12 +24,13 @@ export default {
     adicionarEtapa() {
       let model = this.model();
       model.startTransaction();
-      let data = { key: uuid(), text: "Novo", color: "lightblue" };
+      let data = { key: uuid(), text: "Novo", color: "lightblue", tipo: 1 };
       model.addNodeData(data);
       model.commitTransaction("added Node");
     },
     salvar() {
       let modelo = this.model();
+      let processo = {};
       console.log(modelo.nodeDataArray);
       console.log(modelo.linkDataArray);
     }
