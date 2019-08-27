@@ -18,8 +18,6 @@ import {
   CommandHandler
 } from "gojs";
 
-
-
 export default {
   name: "formularioProcesso",
   computed: {
@@ -72,20 +70,18 @@ export default {
       GraphObject.make(Shape, { toArrow: "OpenTriangle" })
     );
 
-    const validarTipo = tipo => (tipo == 0 || tipo == 3);
+    const validarTipo = tipo => tipo == 0 || tipo == 3;
 
     diagram.commandHandler.deleteSelection = () => {
       let node = diagram.selection.first();
-      if (node instanceof Node && validarTipo(node.data.tipo))
-        return;
+      if (node instanceof Node && validarTipo(node.data.tipo)) return;
 
       CommandHandler.prototype.deleteSelection.call(diagram.commandHandler);
     };
 
     diagram.commandHandler.editTextBlock = () => {
       let node = diagram.selection.first();
-      if (node instanceof Node && validarTipo(node.data.tipo))
-        return;
+      if (node instanceof Node && validarTipo(node.data.tipo)) return;
 
       CommandHandler.prototype.editTextBlock.call(diagram.commandHandler);
     };
@@ -99,6 +95,9 @@ export default {
     }
   },
   methods: {
+    model: function() {
+      return this.diagram.model;
+    },
     updateModel: function(val) {
       if (val instanceof Model) {
         this.diagram.model = val;

@@ -13,7 +13,7 @@ const dadosFluxograma = (state) => {
         nodeDataArray.push({
             key: etapa.identificador, 
             text: etapa.nome, 
-            color: "lightblue",
+            color: etapa.tipo == 0 || etapa.tipo == 3 ? "lightgreen" : "lightblue",
             tipo: etapa.tipo
         });
 
