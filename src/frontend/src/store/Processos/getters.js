@@ -11,7 +11,10 @@ const dadosFluxograma = (state) => {
 
     state.processo.etapas.forEach(etapa => {
         nodeDataArray.push({
-            key: etapa.identificador, text: etapa.nome, color: "lightblue"
+            key: etapa.identificador, 
+            text: etapa.nome, 
+            color: "lightblue",
+            tipo: etapa.tipo
         });
 
         etapa.etapasSaida.forEach(saida => linkDataArray.push({ from: etapa.identificador, to: saida }));

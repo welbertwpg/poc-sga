@@ -14,24 +14,27 @@ import {
   Binding,
   Model,
   GraphLinksModel,
-  TextBlock
+  TextBlock,
+  CommandHandler
 } from "gojs";
+
+
 
 export default {
   name: "formularioProcesso",
   computed: {
     ...mapState("Processos", ["processo"])
   },
-  props: ["modelData"], // accept model data as a parameter
+  props: ["modelData"],
   mounted: function() {
-    var self = this;
-    var myDiagram = GraphObject.make(Diagram, this.$el, {
+    let self = this;
+
+    let diagram = GraphObject.make(Diagram, this.$el, {
       layout: GraphObject.make(TreeLayout, {
         angle: 90,
         arrangement: TreeLayout.ArrangementHorizontal
       }),
       "undoManager.isEnabled": true,
-      // Model ChangedEvents get passed up to component users
       ModelChanged: function(e) {
         self.$emit("model-changed", e);
       },
@@ -39,7 +42,8 @@ export default {
         self.$emit("changed-selection", e);
       }
     });
-    myDiagram.nodeTemplate = GraphObject.make(
+
+    diagram.nodeTemplate = GraphObject.make(
       Node,
       "Auto",
       GraphObject.make(
@@ -60,13 +64,33 @@ export default {
         new Binding("text").makeTwoWay()
       )
     );
-    myDiagram.linkTemplate = GraphObject.make(
+
+    diagram.linkTemplate = GraphObject.make(
       Link,
       { relinkableFrom: true, relinkableTo: true },
       GraphObject.make(Shape),
       GraphObject.make(Shape, { toArrow: "OpenTriangle" })
     );
-    this.diagram = myDiagram;
+
+    const validarTipo = tipo => (tipo == 0 || tipo == 3);
+
+    diagram.commandHandler.deleteSelection = () => {
+      let node = diagram.selection.first();
+      if (node instanceof Node && validarTipo(node.data.tipo))
+        return;
+
+      CommandHandler.prototype.deleteSelection.call(diagram.commandHandler);
+    };
+
+    diagram.commandHandler.editTextBlock = () => {
+      let node = diagram.selection.first();
+      if (node instanceof Node && validarTipo(node.data.tipo))
+        return;
+
+      CommandHandler.prototype.editTextBlock.call(diagram.commandHandler);
+    };
+
+    this.diagram = diagram;
     this.updateModel(this.modelData);
   },
   watch: {
@@ -75,31 +99,18 @@ export default {
     }
   },
   methods: {
-    model: function() {
-      return this.diagram.model;
-    },
     updateModel: function(val) {
-      // No GoJS transaction permitted when replacing Diagram.model.
       if (val instanceof Model) {
         this.diagram.model = val;
       } else {
-        var m = new GraphLinksModel();
+        let m = new GraphLinksModel();
         if (val) {
-          for (var p in val) {
+          for (let p in val) {
             m[p] = val[p];
           }
         }
         this.diagram.model = m;
       }
-    },
-    updateDiagramFromData: function() {
-      this.diagram.startTransaction();
-      // This is very general but very inefficient.
-      // It would be better to modify the diagramData data by calling
-      // Model.setDataProperty or Model.addNodeData, et al.
-      this.diagram.updateAllRelationshipsFromData();
-      this.diagram.updateAllTargetBindings();
-      this.diagram.commitTransaction("updated");
     }
   }
 };
