@@ -8,6 +8,7 @@ namespace Processos.Dominio.Entidades
             => Identificador = Guid.NewGuid();
 
         public Guid Identificador { get; set; }
+        public Guid IdentificadorProcesso { get; set; }
         public DateTime Data { get; set; }
         public Turno Turno { get; set; }
         public string Descricao { get; set; }

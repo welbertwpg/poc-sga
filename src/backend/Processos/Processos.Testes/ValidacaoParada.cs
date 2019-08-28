@@ -16,6 +16,7 @@ namespace Processos.Testes
             var parada = new Parada
             {
                 Data = DateTime.Now,
+                IdentificadorProcesso = Guid.NewGuid(),
                 Descricao = "Parada de teste",
                 Turno = Turno.Manha
             };
@@ -30,7 +31,7 @@ namespace Processos.Testes
             var parada = new Parada { };
             var resultadoValidacao = validadorParada.Validate(parada);
             Assert.False(resultadoValidacao.IsValid);
-            Assert.Equal(3, resultadoValidacao.Errors.Count);
+            Assert.Equal(4, resultadoValidacao.Errors.Count);
         }
     }
 }

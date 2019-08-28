@@ -16,6 +16,7 @@ namespace Processos.Testes
             var problema = new Problema
             {
                 Data = DateTime.Now,
+                IdentificadorProcesso = Guid.NewGuid(),
                 Descricao = "Problema de teste",
                 Turno = Turno.Manha
             };
@@ -30,7 +31,7 @@ namespace Processos.Testes
             var problema = new Problema { };
             var resultadoValidacao = validadorProblema.Validate(problema);
             Assert.False(resultadoValidacao.IsValid);
-            Assert.Equal(3, resultadoValidacao.Errors.Count);
+            Assert.Equal(4, resultadoValidacao.Errors.Count);
         }
     }
 }

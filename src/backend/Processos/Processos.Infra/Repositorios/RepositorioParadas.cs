@@ -10,7 +10,7 @@ namespace Processos.Infra.Repositorios
         public RepositorioParadas(IDbConnection dbConnection) : base(dbConnection) { }
 
         public void Inserir(Parada parada)
-            => dbConnection.Execute(@"INSERT INTO Paradas(Identificador, Data, Turno, Descricao, IdentificadorEtapa)
-                                        VALUES (@Identificador, @Data, @Turno, @Descricao, @IdentificadorEtapa)", parada);
+            => dbConnection.Execute(@"INSERT INTO Paradas(Identificador, IdentificadorProcesso, Data, Turno, Descricao, IdentificadorEtapa)
+                                        VALUES (@Identificador, @IdentificadorProcesso, @Data, @Turno, @Descricao, @IdentificadorEtapa)", parada);
     }
 }

@@ -11,6 +11,10 @@ namespace Processos.Dominio.Validacoes
                 .NotEmpty()
                 .WithMessage("'Identificador' obrigatório");
 
+            RuleFor(p => p.IdentificadorProcesso)
+                .NotEmpty()
+                .WithMessage("'IdentificadorProcesso' obrigatório");
+
             RuleFor(p => p.Data)
                 .NotEmpty()
                 .WithMessage("'Data' obrigatória");

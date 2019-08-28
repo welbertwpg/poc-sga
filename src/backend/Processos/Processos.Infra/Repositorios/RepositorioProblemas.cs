@@ -10,7 +10,7 @@ namespace Processos.Infra.Repositorios
         public RepositorioProblemas(IDbConnection dbConnection) : base(dbConnection) { }
 
         public void Inserir(Problema problema)
-            => dbConnection.Execute(@"INSERT INTO Problemas(Identificador, Data, Turno, Descricao, IdentificadorEtapa)
-                                        VALUES (@Identificador, @Data, @Turno, @Descricao, @IdentificadorEtapa)", problema);
+            => dbConnection.Execute(@"INSERT INTO Problemas(Identificador, IdentificadorProcesso, Data, Turno, Descricao, IdentificadorEtapa)
+                                        VALUES (@Identificador, @IdentificadorProcesso, @Data, @Turno, @Descricao, @IdentificadorEtapa)", problema);
     }
 }
