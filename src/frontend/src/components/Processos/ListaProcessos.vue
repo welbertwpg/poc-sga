@@ -16,7 +16,7 @@
         <md-icon>edit</md-icon>
       </md-button>
 
-      <md-button title="Excluir" @click="excluir(processo)" class="md-icon-button md-list-action">
+      <md-button title="Excluir" @click="excluirProcesso(processo)" class="md-icon-button md-list-action">
         <md-icon>delete</md-icon>
       </md-button>
     </md-list-item>
@@ -32,9 +32,7 @@ export default {
     ...mapState("Processos", ["processos"])
   },
   methods: {
-    editar() {},
-    excluir() {},
-    ...mapActions("Processos", ["atualizarProcessos", "atualizarProcesso"])
+    ...mapActions("Processos", ["atualizarProcessos", "atualizarProcesso", "excluirProcesso"])
   },
   created() {
     this.atualizarProcessos();

@@ -47,9 +47,18 @@ const salvarProcesso = async ({ commit, state }, etapas) => {
     commit('atualizarProcesso', processo);
 }
 
+const excluirProcesso = async ({ commit }, processo) => {
+    const resposta = await repositorioProcessos.excluir(processo.identificador);
+    if (resposta.status == 200) {
+        commit('excluirProcesso', processo);
+        commit('atualizarProcesso', {});
+    }
+}
+
 export default {
     atualizarProcessos,
     atualizarProcesso,
     criarNovoProcesso,
-    salvarProcesso
+    salvarProcesso,
+    excluirProcesso
 }
