@@ -40,10 +40,11 @@ const salvarProcesso = async ({ commit, state }, etapas) => {
     processo.etapas = etapas;
 
     const resposta = await repositorioProcessos.inserirOuAtualizar(processo);
-    if (resposta.status == 200) {
-        await atualizarProcessos({ commit });
-        commit('atualizarProcesso', processo);
-    }
+    if (resposta.status != 200)
+        throw resposta.data;
+
+    await atualizarProcessos({ commit });
+    commit('atualizarProcesso', processo);
 }
 
 export default {

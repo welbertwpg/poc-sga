@@ -5,6 +5,14 @@
       <md-button @click="adicionarEtapa" class="md-layout-item md-raised md-primary">Adicionar etapa</md-button>
       <md-button @click="salvar" class="md-layout-item md-raised md-primary">Salvar</md-button>
     </div>
+    <md-snackbar
+      :md-position="'center'"
+      :md-duration="4000"
+      :md-active.sync="mostrarMensagem"
+      md-persistent
+    >
+      <span>{{mensagem}}</span>
+    </md-snackbar>
   </div>
 </template>
 
@@ -16,6 +24,12 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   computed: {
     ...mapGetters("Processos", ["dadosFluxograma"])
+  },
+  data() {
+    return {
+      mensagem: "",
+      mostrarMensagem: false
+    };
   },
   methods: {
     ...mapActions("Processos", ["salvarProcesso"]),
@@ -35,13 +49,16 @@ export default {
         identificador: node.key,
         nome: node.text,
         tipo: node.tipo,
-        etapasSaida: modelo.linkDataArray.filter((link) => link.from == node.key).map((link) => link.to)
+        etapasSaida: modelo.linkDataArray
+          .filter(link => link.from == node.key)
+          .map(link => link.to)
       }));
 
       try {
         await this.salvarProcesso(etapas);
-      }catch(e){
-        console.log(e);
+      } catch (erro) {
+        this.mensagem = erro.toString();
+        this.mostrarMensagem = true;
       }
     }
   },
