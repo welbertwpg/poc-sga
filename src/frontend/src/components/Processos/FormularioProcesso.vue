@@ -11,28 +11,38 @@
 <script>
 import Fluxograma from "./Fluxograma";
 import uuid from "uuid/v4";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   computed: {
     ...mapGetters("Processos", ["dadosFluxograma"])
   },
   methods: {
+    ...mapActions("Processos", ["salvarProcesso"]),
     model: function() {
       return this.$refs.diag.model();
     },
     adicionarEtapa() {
-      let model = this.model();
+      const model = this.model();
       model.startTransaction();
-      let data = { key: uuid(), text: "Novo", color: "lightblue", tipo: 1 };
+      const data = { key: uuid(), text: "Novo", color: "lightblue", tipo: 1 };
       model.addNodeData(data);
       model.commitTransaction("added Node");
     },
-    salvar() {
-      let modelo = this.model();
-      let processo = {};
-      console.log(modelo.nodeDataArray);
-      console.log(modelo.linkDataArray);
+    async salvar() {
+      const modelo = this.model();
+      const etapas = modelo.nodeDataArray.map(node => ({
+        identificador: node.key,
+        nome: node.text,
+        tipo: node.tipo,
+        etapasSaida: modelo.linkDataArray.filter((link) => link.from == node.key).map((link) => link.to)
+      }));
+
+      try {
+        await this.salvarProcesso(etapas);
+      }catch(e){
+        console.log(e);
+      }
     }
   },
   components: {

@@ -35,7 +35,10 @@ const criarNovoProcesso = async ({ commit }, nome) => {
     commit('atualizarProcesso', processo);
 }
 
-const salvarProcesso = async ({ commit }, processo) => {
+const salvarProcesso = async ({ commit, state }, etapas) => {
+    let processo = state.processo;
+    processo.etapas = etapas;
+
     const resposta = await repositorioProcessos.inserirOuAtualizar(processo);
     if (resposta.status == 200) {
         await atualizarProcessos({ commit });
