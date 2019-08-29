@@ -11,6 +11,7 @@
         </md-button>
       </div>
     </md-toolbar>
+
     <lista-processos />
     <formulario-processo />
 
@@ -32,7 +33,7 @@
 import ListaProcessos from "./ListaProcessos";
 import FormularioProcesso from "./FormularioProcesso";
 import { mapActions } from "vuex";
-import { setTimeout } from 'timers';
+import { setTimeout } from "timers";
 
 export default {
   name: "processos",
@@ -44,7 +45,7 @@ export default {
     ...mapActions("Processos", ["criarNovoProcesso"]),
     criar() {
       if (this.nome == null) {
-        setTimeout(() => this.exibirPromptCriar = true, 100);
+        setTimeout(() => (this.exibirPromptCriar = true), 100);
         return;
       }
       this.criarNovoProcesso(this.nome);

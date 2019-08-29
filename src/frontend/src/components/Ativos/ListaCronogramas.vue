@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import DialogSga from "./DialogSga";
+import DialogSga from "../DialogSga";
 import FormularioCriarCronograma from "./FormularioCriarCronograma";
 import { mapGetters, mapActions } from "vuex";
 

@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import DialogSga from "./DialogSga";
+import DialogSga from "../DialogSga";
 import FormularioCriarAtivo from "./FormularioCriarAtivo";
 import ListaAdquiriveis from "./ListaAdquiriveis";
 import FormularioCriarManutencao from "./FormularioCriarManutencao";

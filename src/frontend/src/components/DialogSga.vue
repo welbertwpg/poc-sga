@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: "criarAtivo",
+  name: "dialogSga",
   props: ["value", "title"],
   methods: {
     fechar() {
