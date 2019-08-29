@@ -120,10 +120,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.md-list-item-text {
-  max-width: 300px;
-  overflow-wrap: break-word;
-}
-</style>
