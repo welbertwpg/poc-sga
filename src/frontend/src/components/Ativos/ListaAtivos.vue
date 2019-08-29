@@ -6,7 +6,10 @@
       </div>
 
       <div class="md-toolbar-section-end">
-        <md-button class="md-primary md-raised" @click="abrirDialogCriar">
+        <md-button class="md-primary md-raised" @click="() => exibirAdquirirAtivo = true">
+          <md-icon>add_shopping_cart</md-icon>
+        </md-button>
+        <md-button class="md-primary md-raised" @click="() => exibirCriarAtivo = true">
           <md-icon>add</md-icon>
         </md-button>
       </div>
@@ -51,21 +54,20 @@
     <dialog-sga :title="'Manutenções'" v-model="exibirManutencoes">
       <lista-manutencoes :ativo="ativoManutencao" />
     </dialog-sga>
+
     <dialog-sga :title="'Criar manutenção'" v-model="exibirCriarManutencao">
       <formulario-criar-manutencao
         :ativo="ativoManutencao"
         :aposSalvar="fecharDialogCriarManutencao"
       />
     </dialog-sga>
+
+    <dialog-sga :title="'Adquirir ativo'" v-model="exibirAdquirirAtivo">
+      <lista-adquiriveis :aposSalvar="() => exibirAdquirirAtivo = false" />
+    </dialog-sga>
+
     <dialog-sga :title="'Criar ativo'" v-model="exibirCriarAtivo">
-      <md-tabs>
-        <md-tab id="criar" md-label="Criar">
-          <formulario-criar-ativo :aposSalvar="fecharDialogCriar" />
-        </md-tab>
-        <md-tab id="adquirir" md-label="Adquirir">
-          <lista-adquiriveis :aposSalvar="fecharDialogCriar" />
-        </md-tab>
-      </md-tabs>
+      <formulario-criar-ativo :aposSalvar="() => exibirCriarAtivo = false" />
     </dialog-sga>
   </div>
 </template>
@@ -83,6 +85,7 @@ export default {
   data: () => ({
     filtro: "",
     exibirCriarAtivo: false,
+    exibirAdquirirAtivo: false,
     exibirCriarManutencao: false,
     exibirManutencoes: false,
     ativoManutencao: null
@@ -91,12 +94,6 @@ export default {
     ...mapGetters("Ativos", ["ativos"])
   },
   methods: {
-    abrirDialogCriar() {
-      this.exibirCriarAtivo = true;
-    },
-    fecharDialogCriar() {
-      this.exibirCriarAtivo = false;
-    },
     abrirDialogManutencoes(ativo) {
       this.ativoManutencao = ativo;
       this.exibirManutencoes = true;
