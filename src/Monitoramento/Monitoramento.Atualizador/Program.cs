@@ -33,7 +33,18 @@ namespace Monitoramento.Atualizador
             };
 
             logger.Information($"Conectando no endereço {endpointSignalr}");
-            conexao.StartAsync().Wait();
+
+            conectar:
+            try
+            {
+                conexao.StartAsync().Wait();
+            }
+            catch
+            {
+                Thread.Sleep(1000);
+                goto conectar;
+            }
+
             logger.Information("Conectado");
 
             var intervalo = Convert.ToInt32(configuration["Intervalo"]);
