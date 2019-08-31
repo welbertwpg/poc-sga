@@ -1,0 +1,111 @@
+version: '3.4'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=sistemaGestãoAmbiental2019!
+    networks:
+      - redeProcessos
+    ports:
+      - "1433:1433"
+
+  mongodb:
+    image: mongo     
+    networks:
+      - redeAtivos
+    ports:
+      - "27017:27017"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    networks:
+      - redeMonitoramento
+    ports:
+      - "15672:15672"
+
+  ativos.agendadormanutencoes:
+    image: ${DOCKER_REGISTRY-}ativosagendadormanutencoes
+    build:
+      context: .
+      dockerfile: Ativos/Ativos.AgendadorManutencoes/Dockerfile
+    depends_on:
+      - mongodb
+    networks:
+      - redeAtivos
+
+  ativos.api:
+    image: ${DOCKER_REGISTRY-}ativosapi
+    build:
+      context: .
+      dockerfile: Ativos/Ativos.Api/Dockerfile
+    depends_on:
+      - mongodb
+    networks:
+      - redeAtivos
+      - redeGateway
+
+  monitoramento.api:
+    image: ${DOCKER_REGISTRY-}monitoramentoapi
+    build:
+      context: .
+      dockerfile: Monitoramento/Monitoramento.Api/Dockerfile
+    depends_on:
+      - rabbitmq
+    networks:
+      - redeMonitoramento
+      - redeGateway
+
+  monitoramento.atualizador:
+    image: ${DOCKER_REGISTRY-}monitoramentoatualizador
+    build:
+      context: .
+      dockerfile: Monitoramento/Monitoramento.Atualizador/Dockerfile
+    depends_on:
+      - monitoramento.api
+    networks:
+      - redeMonitoramento
+
+  processos.api:
+    image: ${DOCKER_REGISTRY-}processosapi
+    build:
+      context: .
+      dockerfile: Processos/Processos.Api/Dockerfile
+    depends_on:
+      - sqlserver
+    networks:
+      - redeProcessos
+      - redeGateway
+
+  apigateway:
+    image: ${DOCKER_REGISTRY-}apigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+    depends_on:
+      - processos.api
+      - monitoramento.api
+      - ativos.api
+    networks:
+      - redeGateway
+    ports:
+      - "80:80"
+
+  frontend:
+    image: ${DOCKER_REGISTRY-}frontend
+    build:
+      context: .
+      dockerfile: Frontend/Dockerfile
+    depends_on:
+      - apigateway
+    networks:
+      - redeGateway
+    ports:
+      - "8080:8080"
+
+networks:
+  redeProcessos: {}
+  redeAtivos: {}
+  redeMonitoramento: {}
+  redeGateway: {}

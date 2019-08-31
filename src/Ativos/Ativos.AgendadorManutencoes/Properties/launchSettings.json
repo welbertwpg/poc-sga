@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Ativos.AgendadorManutencoes": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

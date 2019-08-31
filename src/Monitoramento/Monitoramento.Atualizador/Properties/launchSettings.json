@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Monitoramento.Atualizador": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
