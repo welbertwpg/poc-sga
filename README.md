@@ -10,7 +10,7 @@ docker-compose -f ./src/docker-compose.yml up
 ```
 
 Com isso toda a estrutura do projeto será criada e configurada, será necessário apenas criar as tabelas do banco de dados relacional do módulo de processos, para isso execute os comandos abaixo substituindo o `src_sqlserver_1` com o nome do container de sqlserver criado pelo docker-compose:
-```
+```console
 docker cp ./sql/db-processos.sql src_sqlserver_1:./
 docker exec src_sqlserver_1 bash -c '/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P ${SA_PASSWORD} -i db-processos.sql'
 ```
