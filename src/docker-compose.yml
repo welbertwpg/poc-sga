@@ -5,7 +5,7 @@ services:
     image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=sistemaGestãoAmbiental2019!
+      - SA_PASSWORD=sistemaGestaoAmbiental2019!
     networks:
       - redeProcessos
     ports:
