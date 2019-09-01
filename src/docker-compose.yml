@@ -90,7 +90,7 @@ services:
     networks:
       - redeGateway
     ports:
-      - "80:80"
+      - "8080:80"
 
   frontend:
     image: ${DOCKER_REGISTRY-}frontend
@@ -102,7 +102,7 @@ services:
     networks:
       - redeGateway
     ports:
-      - "8080:8080"
+      - "80:8080"
 
 networks:
   redeProcessos: {}
