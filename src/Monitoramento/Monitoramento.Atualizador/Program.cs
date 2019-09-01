@@ -32,23 +32,23 @@ namespace Monitoramento.Atualizador
                 await conexao.StartAsync();
             };
 
-            logger.Information($"Conectando no endereço {endpointSignalr}");
+            var intervalo = Convert.ToInt32(configuration["Intervalo"]);
+            logger.Information($"Tempo de atualização configurado: {intervalo}ms");
 
             conectar:
             try
             {
+                logger.Information($"Conectando no endereço {endpointSignalr}");
                 conexao.StartAsync().Wait();
             }
             catch
             {
-                Thread.Sleep(1000);
+                logger.Error("Erro ao conectar, uma nova tentativa será realizada no intervalo configurado");
+                Thread.Sleep(intervalo);
                 goto conectar;
             }
 
             logger.Information("Conectado");
-
-            var intervalo = Convert.ToInt32(configuration["Intervalo"]);
-            logger.Information($"Tempo de atualização: {intervalo}ms");
 
             ISensores sensores = new MockSensores();
             while (true)
