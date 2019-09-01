@@ -2,6 +2,7 @@
 using RabbitMQ.Client;
 using System;
 using System.Text;
+using System.Threading;
 
 namespace Monitoramento.Infra.AMQP
 {
@@ -14,16 +15,26 @@ namespace Monitoramento.Infra.AMQP
         public ConexaoFila(string host, string fila)
         {
             var factory = new ConnectionFactory() { HostName = host };
-            conexao = factory.CreateConnection();
-            canal = conexao.CreateModel();
 
-            canal.QueueDeclare(queue: fila,
-                                 durable: true,
-                                 exclusive: false,
-                                 autoDelete: false,
-                                 arguments: null);
+            conectar:
+            try
+            {
+                conexao = factory.CreateConnection();
+                canal = conexao.CreateModel();
 
-            this.fila = fila;
+                canal.QueueDeclare(queue: fila,
+                                     durable: true,
+                                     exclusive: false,
+                                     autoDelete: false,
+                                     arguments: null);
+
+                this.fila = fila;
+            }
+            catch
+            {
+                Thread.Sleep(2000);
+                goto conectar;
+            }
         }
 
         public void EnviarMensagem(object mensagem)
