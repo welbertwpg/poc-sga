@@ -35,7 +35,7 @@ namespace Ativos.AgendadorManutencoes
                 var cronogramas = repositorioCronogramas.Obter();
                 logger.Information($"{cronogramas.Count()} cronogramas cadastrados");
 
-                var ativos = repositorioAtivos.Obter().ToList();
+                var ativos = repositorioAtivos.Obter().Where(a => a.Tipo != TipoAtivo.Insumo).ToList();
                 logger.Information($"{ativos.Count} ativos cadastrados");
 
                 foreach (var cronograma in cronogramas)

@@ -35,7 +35,7 @@
               <span>Visualizar manutenções</span>
             </md-button>
           </md-list-item>
-          <md-list-item class="md-inset">
+          <md-list-item v-if="ativo.tipo != 3 && ativo.tipo != '3' && ativo.tipo != 'Insumo'" class="md-inset">
             <md-button title="Criar manutenção" @click="abrirDialogCriarManutencao(ativo)">
               <md-icon>add</md-icon>
               <span>Criar manutenção</span>

@@ -36,7 +36,6 @@
               <md-option></md-option>
               <md-option value="1">Equipamento</md-option>
               <md-option value="2">Máquina</md-option>
-              <md-option value="3">Insumo</md-option>
             </md-select>
             <span class="md-error">O tipo de ativo é obrigatório</span>
           </md-field>

@@ -5,6 +5,7 @@ using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using FluentValidation;
 
 namespace Ativos.Infra.Repositorios
 {
@@ -40,7 +41,9 @@ namespace Ativos.Infra.Repositorios
         public void Inserir(ObjectId id, Manutencao manutencao)
         {
             var atualizacao = Builders<Ativo>.Update.Push(a => a.Manutencoes, manutencao);
-            ativos.UpdateOne(a => a.Identificador == id, atualizacao);
+            var resultado = ativos.UpdateOne(a => a.Identificador == id && a.Tipo != TipoAtivo.Insumo, atualizacao);
+            if (!resultado.IsModifiedCountAvailable)
+                throw new ValidationException("O registro não existe ou não pode receber um registro de manutenção");
         }
 
         public Ativo Obter(ObjectId id)
